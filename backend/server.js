@@ -1,7 +1,10 @@
 const express = require('express');
 const pg = require('pg');
 const app = express();
+const dotenv = require('dotenv');
+const dbpool = require("./config/db");
 
+dotenv.config();
 
 const port = 8080;
 
