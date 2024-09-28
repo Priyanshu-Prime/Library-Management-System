@@ -16,13 +16,10 @@ const pool = new Pool
 pool.connect((err) =>
 {
     if(err)
-    {
         console.log("Error connecting to the database pool", err.message);
-        // console.log(err);
-    }
-
     else
         console.log("Connected to Postgres DB successfully");
 });
 
 module.exports = pool;
+
