@@ -1,0 +1,6 @@
+- /api/books     -----> GET All Books, POST new book
+- /api/books/:id    ---------> GET one book, PUT one book, DELETE one book
+
+- /api/students    -----> GET All Students, POST new Student
+- /api/students/:id    ---------> GET one student, PUT one student, DELETE one student
+

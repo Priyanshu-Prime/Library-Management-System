@@ -6,14 +6,9 @@ const dbpool = require("./config/db");
 
 dotenv.config();
 
-const port = 8080;
+const port = process.env.PORT;
 
 app.listen(port, ()=>
 {
     console.log(`Server is running on port ${port}`);
-});
-
-app.get("/", (req, res) =>
-{
-    res.send("Home directory");
 });
