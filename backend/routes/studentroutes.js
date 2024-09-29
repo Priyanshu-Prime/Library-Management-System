@@ -11,3 +11,5 @@ router.post("/students", createStudent);
 router.patch("/students/:oldid", changeStudent);
 
 router.delete("/students/:id", removeStudent);
+
+module.exports = router;
