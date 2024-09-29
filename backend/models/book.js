@@ -46,12 +46,13 @@ const updateBook = async(id, name, author) =>
 {
     try
     {
-        const data = await pool.query("UPDATE book SET id=$1, name=$2, author=$3", [id, name, author]);
+        const data = await pool.query("UPDATE book SET name=$2, author=$3 WHERE id=$1", [id, name, author]);
         return data.rows[0];
     }
     catch(err)
     {
         console.log("Error in updateBook in book.js");
+        console.log(err.stack);
         throw err;
     }
 };
@@ -66,6 +67,7 @@ const deleteBook = async(id) =>
     catch(err)
     {
         console.log("Error in deleteBook in book.js");
+        console.log(err.stack);
         throw err;
     }
 };
