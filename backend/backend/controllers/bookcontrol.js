@@ -35,8 +35,7 @@ const oneBook = async(req, res) =>
 
 const createBook = async(req, res) =>
 {
-    let {id, name, author} = req.body;
-    // console.log(`${id} and ${name} and ${author}`);
+    const {id, name, author} = req.body;
     try
     {
         const book = await addBook(id, name, author);
@@ -46,22 +45,23 @@ const createBook = async(req, res) =>
     {
         console.log("Error in createBook in bookcontrol.js");
         res.status(500).json({error: "Failed to create book"});
-        console.log(err.stack);
     }
 };
 
 const changeBook = async(req, res) =>
 {
-    let {id} = req.params;
-    const {name, author} = req.body;
+    const {oldid} = req.params;
+    const {id, name, author} = req.body;
+    console.log(id);
     try
     {
-        const book = await updateBook(id, name, author);
+        const book = await updateBook(id, name, author, oldid);
         res.status(200).json(book);
     }
     catch(err)
     {
         console.log("Error in changeBook in bookcontrol.js");
+        console.log(err.stack);
         res.status(500).json({error: "Failed to update book"});
     }
 };

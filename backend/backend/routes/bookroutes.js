@@ -8,7 +8,7 @@ router.get("/books/:id", oneBook);
 
 router.post("/books", createBook);
 
-router.put("/books/:id", changeBook);
+router.patch("/books/:oldid", changeBook);
 
 router.delete("/books/:id", removeBook);
 
