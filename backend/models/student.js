@@ -18,7 +18,7 @@ const getStudentByID = async(id) =>
 {
     try
     {
-        const data = await pool.query("SELECT * FROM students WHERE id=$1", [id]);
+        const data = await pool.query("SELECT * FROM students WHERE roll_no=$1", [id]);
         return data.rows[0];
     }
     catch(err)
@@ -28,11 +28,11 @@ const getStudentByID = async(id) =>
     }
 };
 
-const addStudent = async(id, name, author) =>
+const addStudent = async(roll_no, name, email, contact) =>
 {
     try
     {
-        const data = await pool.query("INSERT INTO students VALUES($1, $2, $3) RETURNING *", [id, name, author]);
+        const data = await pool.query("INSERT INTO students VALUES($1, $2, $3, $4) RETURNING *", [roll_no, name, email, contact]);
         return data.rows[0];
     }
     catch(err)
@@ -42,11 +42,11 @@ const addStudent = async(id, name, author) =>
     }
 };
 
-const updateStudent = async(id, name, author) =>
+const updateStudent = async(oldroll_no, roll_no, name, email, contact) =>
 {
     try
     {
-        const data = await pool.query("UPDATE students SET id=$1, name=$2, author=$3", [id, name, author]);
+        const data = await pool.query("UPDATE students SET roll_no=$1, name=$2, email=$3, contact=$4 where roll_no=$5", [roll_no, name, email, contact, oldroll_no]);
         return data.rows[0];
     }
     catch(err)
@@ -60,7 +60,7 @@ const deleteStudent = async(id) =>
 {
     try
     {
-        const data = await pool.query("DELETE FROM students WHERE id=$1", [id]);
+        const data = await pool.query("DELETE FROM students WHERE roll_no=$1", [id]);
         console.log("Students deleted");
     }
     catch(err)
