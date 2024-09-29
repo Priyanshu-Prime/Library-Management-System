@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const dbpool = require("./config/db");
 const cors = require("cors");
 const bookRoutes = require("./routes/bookroutes");
+const studentRoutes = require("./routes/studentroutes");
+const issueRoutes = require("./routes/issuingroutes");
 
 dotenv.config();
 app.use(cors());
@@ -20,3 +22,5 @@ app.listen(port, ()=>
 });
 
 app.use("/api", bookRoutes);
+app.use("/api", studentRoutes);
+app.use("/api", issueRoutes);

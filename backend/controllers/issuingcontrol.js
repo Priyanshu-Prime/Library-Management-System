@@ -41,4 +41,6 @@ const defaultersList = async (req, res) => {
     }
 };
 
+//ADD A REMOVE RECORD FUNCTION TOO
+
 module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList};

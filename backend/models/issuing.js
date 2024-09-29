@@ -56,4 +56,6 @@ const getDefaulters = async() =>
     }
 };
 
+//ADD A REMOVE RECORDS FUNCTION TOO
+
 module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters};

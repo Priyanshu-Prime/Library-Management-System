@@ -9,3 +9,5 @@ router.get("/issues/book/:id", recordByBookId);
 router.get("/issues/student/:id", recordByStudentId);
 
 router.get("/issues/defaulters", defaultersList);
+
+module.exports = router;
