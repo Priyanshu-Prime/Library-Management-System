@@ -9,7 +9,7 @@ const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent
 
 const allStudents = async (req, res) => {
     try {
-        const stduents = await getAllStudents();
+        const students = await getAllStudents();
         req.status(200).json(students);
     }
     catch (err) {
@@ -18,9 +18,10 @@ const allStudents = async (req, res) => {
     }
 };
 
-const StudentByID = async (req, res) => {
+const studentByID = async (req, res) => {
+    const {id} = req.params;
     try {
-        const stduents = await getStudentByID();
+        const students = await getStudentByID(id);
         req.status(200).json(students);
     }
     catch (err) {
@@ -29,29 +30,46 @@ const StudentByID = async (req, res) => {
     }
 };
 
+const createStudent = async (req, res) => 
+{
+    const {roll_no, name, email, contact} = req.body;
+    try {
+        const students = await addStudent(roll_no, name, email, contact);
+        req.status(200).json(students);
+    }
+    catch (err) {
+        console.log("Error in createStudent in issuingcontrol.js");
+        res.status(500).json({ error: "Failed to create student" });
+    }
+};
 
-// Unfinished Business : (Reason : Schema for student table unknown)
-// const createStudent = async (req, res) => {
-//     try {
-//         const stduents = await getStudentByID();
-//         req.status(200).json(students);
-//     }
-//     catch (err) {
-//         console.log("Error in StudentByID in issuingcontrol.js");
-//         res.status(500).json({ error: "Failed to get students" });
-//     }
-// };
 
+const changeStudent = async (req, res) => {
+    const {oldid} = req.params;
+    const {roll_no, name, email, contact} = req.body;
+    try {
+        const students = await updateStudent(oldid, roll_no, name, email, contact);
+        req.status(200).json(students);
+    }
+    catch (err) {
+        console.log("Error in changeStudent in issuingcontrol.js");
+        res.status(500).json({ error: "Failed to change student" });
+    }
+};
 
+const removeStudent = async(req, res) =>
+{
+    const {id} = req.params;
+    try
+    {
+        const students = await deleteStudent(id);
+        req.status(200).json(students);
+    }
+    catch (err)
+    {
+        console.log("Error in removeStudent in issuingcontrol.js");
+        res.status(500).json({ error: "Failed to remove student" });
+    }
+}
 
-// Unfinished business : (Reason : Schema for student table unknown)
-// const changeStudent = async (req, res) => {
-//     try {
-//         const stduents = await updateStudent();
-//         req.status(200).json(students);
-//     }
-//     catch (err) {
-//         console.log("Error in allStudents in issuingcontrol.js");
-//         res.status(500).json({ error: "Failed to get students" });
-//     }
-// };
+module.exports = {allStudents, studentByID, createStudent, changeStudent, removeStudent}

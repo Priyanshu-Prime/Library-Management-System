@@ -10,6 +10,7 @@ const getAllBooks = async() =>
     catch(err)
     {
         console.log("Error in getAllBooks in book.js");
+        console.log(err.stack);
         throw err;
     }
 };
@@ -42,16 +43,19 @@ const addBook = async(id, name, author) =>
     }
 };
 
-const updateBook = async(id, name, author) =>
+const updateBook = async(id, name, author, old) =>
 {
+    console.log(`${old} ${id} ${name} ${author}`);
     try
     {
-        const data = await pool.query("UPDATE book SET id=$1, name=$2, author=$3", [id, name, author]);
+        const data = await pool.query("UPDATE book SET id=$1, name=$2, author=$3 WHERE id=$4", [id, name, author, old]);
+        console.log("Updated book details successfully");
         return data.rows[0];
     }
     catch(err)
     {
         console.log("Error in updateBook in book.js");
+        console.log(err.stack);
         throw err;
     }
 };
@@ -66,6 +70,7 @@ const deleteBook = async(id) =>
     catch(err)
     {
         console.log("Error in deleteBook in book.js");
+        console.log(err.stack);
         throw err;
     }
 };

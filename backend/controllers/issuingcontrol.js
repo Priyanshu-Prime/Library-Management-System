@@ -3,37 +3,37 @@ const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters } 
 const allRecords = async (req, res) => {
     try {
         const record = await getAllRecords();
-        req.status(200).json(books);
+        res.status(200).json(books);
     }
     catch (err) {
         console.log("Error in allRecords in issuingcontrol.js");
         res.status(500).json({ error: "Failed to get records" });
     }
 };
-const RecordByBookId = async (req, res) => {
+const recordByBookId = async (req, res) => {
     try {
         const record = await getRecordByBookID();
-        req.status(200).json(record);
+        res.status(200).json(record);
     }
     catch (err) {
         console.log("Error in RecordByBookId in issuingcontrol.js");
         res.status(500).json({ error: "Failed to get record" });
     }
 };
-const RecordByStudentId = async (req, res) => {
+const recordByStudentId = async (req, res) => {
     try {
         const record = await getRecordByStudentID();
-        req.status(200).json(record);
+        res.status(200).json(record);
     }
     catch (err) {
         console.log("Error in RecordByStudentId in issuingcontrol.js");
         res.status(500).json({ error: "Failed to get record" });
     }
 };
-const DefaultersList = async (req, res) => {
+const defaultersList = async (req, res) => {
     try {
         const record = await getDefaulters();
-        req.status(200).json(record);
+        res.status(200).json(record);
     }
     catch (err) {
         console.log("Error in DefaultersList in issuingcontrol.js");
@@ -41,4 +41,4 @@ const DefaultersList = async (req, res) => {
     }
 };
 
-module.exports = {allRecords,RecordByBookId,RecordByStudentId,DefaultersList};
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList};

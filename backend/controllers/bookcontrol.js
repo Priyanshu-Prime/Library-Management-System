@@ -5,12 +5,13 @@ const allBooks = async(req, res) =>
     try
     {
         const books = await getAllBooks();
-        req.status(200).json(books);
+        res.status(200).json(books);
     }
     catch (err)
     {
         console.log("Error in allBooks in bookcontrol.js");
         res.status(500).json({error: "Failed to get books"});
+        console.log(err.stack);
     }
 };
 
@@ -23,7 +24,7 @@ const oneBook = async(req, res) =>
         if (book)
             res.status(200).json(book);
         else
-            res.status(500).json({erro: "Book not found"});
+            res.status(500).json({error: "Book not found"});
     }
     catch(err)
     {
@@ -49,15 +50,18 @@ const createBook = async(req, res) =>
 
 const changeBook = async(req, res) =>
 {
+    const {oldid} = req.params;
     const {id, name, author} = req.body;
+    console.log(id);
     try
     {
-        const book = await updateBook(id, name, author);
+        const book = await updateBook(id, name, author, oldid);
         res.status(200).json(book);
     }
     catch(err)
     {
         console.log("Error in changeBook in bookcontrol.js");
+        console.log(err.stack);
         res.status(500).json({error: "Failed to update book"});
     }
 };
