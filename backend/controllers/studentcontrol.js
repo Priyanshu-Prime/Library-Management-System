@@ -10,7 +10,7 @@ const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent
 const allStudents = async (req, res) => {
     try {
         const students = await getAllStudents();
-        req.status(200).json(students);
+        res.status(200).json(students);
     }
     catch (err) {
         console.log("Error in allStudents in issuingcontrol.js");
@@ -22,7 +22,7 @@ const studentByID = async (req, res) => {
     const {id} = req.params;
     try {
         const students = await getStudentByID(id);
-        req.status(200).json(students);
+        res.status(200).json(students);
     }
     catch (err) {
         console.log("Error in StudentByID in issuingcontrol.js");
@@ -35,7 +35,7 @@ const createStudent = async (req, res) =>
     const {roll_no, name, email, contact} = req.body;
     try {
         const students = await addStudent(roll_no, name, email, contact);
-        req.status(200).json(students);
+        res.status(200).json(students);
     }
     catch (err) {
         console.log("Error in createStudent in issuingcontrol.js");
@@ -49,7 +49,7 @@ const changeStudent = async (req, res) => {
     const {roll_no, name, email, contact} = req.body;
     try {
         const students = await updateStudent(oldid, roll_no, name, email, contact);
-        req.status(200).json(students);
+        res.status(200).json(students);
     }
     catch (err) {
         console.log("Error in changeStudent in issuingcontrol.js");
@@ -63,13 +63,13 @@ const removeStudent = async(req, res) =>
     try
     {
         const students = await deleteStudent(id);
-        req.status(200).json(students);
+        res.status(200).json(students);
     }
     catch (err)
     {
         console.log("Error in removeStudent in issuingcontrol.js");
         res.status(500).json({ error: "Failed to remove student" });
-    }
+    }   
 }
 
 module.exports = {allStudents, studentByID, createStudent, changeStudent, removeStudent}

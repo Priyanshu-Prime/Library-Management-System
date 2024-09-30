@@ -23,6 +23,7 @@ const recordByBookId = async (req, res) => {
         res.status(500).json({ error: "Failed to get record" });
     }
 };
+
 const recordByStudentId = async (req, res) => {
     const {id} = req.params;
     try {
@@ -34,6 +35,7 @@ const recordByStudentId = async (req, res) => {
         res.status(500).json({ error: "Failed to get record" });
     }
 };
+
 const defaultersList = async (req, res) => {
     try {
         const record = await getDefaulters();
