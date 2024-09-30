@@ -13,7 +13,7 @@ const allStudents = async (req, res) => {
         req.status(200).json(students);
     }
     catch (err) {
-        console.log("Error in allStudents in issuingcontrol.js");
+        console.log("Error in allStudents in studentcontrol.js");
         res.status(500).json({ error: "Failed to get students" });
     }
 };
@@ -25,7 +25,7 @@ const studentByID = async (req, res) => {
         req.status(200).json(students);
     }
     catch (err) {
-        console.log("Error in StudentByID in issuingcontrol.js");
+        console.log("Error in StudentByID in studentcontrol.js");
         res.status(500).json({ error: "Failed to get students" });
     }
 };
@@ -38,7 +38,7 @@ const createStudent = async (req, res) =>
         req.status(200).json(students);
     }
     catch (err) {
-        console.log("Error in createStudent in issuingcontrol.js");
+        console.log("Error in createStudent in studentcontrol.js");
         res.status(500).json({ error: "Failed to create student" });
     }
 };
@@ -52,7 +52,7 @@ const changeStudent = async (req, res) => {
         req.status(200).json(students);
     }
     catch (err) {
-        console.log("Error in changeStudent in issuingcontrol.js");
+        console.log("Error in changeStudent in studentcontrol.js");
         res.status(500).json({ error: "Failed to change student" });
     }
 };
@@ -67,7 +67,7 @@ const removeStudent = async(req, res) =>
     }
     catch (err)
     {
-        console.log("Error in removeStudent in issuingcontrol.js");
+        console.log("Error in removeStudent in studentcontrol.js");
         res.status(500).json({ error: "Failed to remove student" });
     }
 }
