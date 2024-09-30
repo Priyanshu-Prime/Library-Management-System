@@ -12,9 +12,6 @@ const pool = new Pool(
     }
 );
 
-console.log(process.env.MY_EMAIL);
-console.log(process.env.MY_PASSWORD);
-
 const sendEmail = async(req, res) =>
 {
     try
@@ -58,7 +55,5 @@ const sendEmail = async(req, res) =>
         console.error("Error in checking overdue books: ", err);
     }
 };
-
-sendEmail();
 
 module.exports = {sendEmail};

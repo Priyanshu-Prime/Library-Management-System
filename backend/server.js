@@ -7,6 +7,7 @@ const cors = require("cors");
 const bookRoutes = require("./routes/bookroutes");
 const studentRoutes = require("./routes/studentroutes");
 const issueRoutes = require("./routes/issuingroutes");
+// const emailRoutes = require("./routes/emailroutes");
 
 dotenv.config();
 app.use(cors());
@@ -21,6 +22,9 @@ app.listen(port, ()=>
     console.log(`Server is running on port ${port}`);
 });
 
+require("./schedulers/emailscheduler");
+
 app.use("/api", bookRoutes);
 app.use("/api", studentRoutes);
 app.use("/api", issueRoutes);
+// app.use("/api", emailRoutes);
