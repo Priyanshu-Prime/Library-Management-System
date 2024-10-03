@@ -1,12 +1,5 @@
 const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent } = require("../models/student");
 
-// -----------------------------------------------------------------
-// Notes for fellow developers:-
-// CreateStudent Incomplete
-// ChangeStudent Incomplete
-// -----------------------------------------------------------------
-
-
 const allStudents = async (req, res) => {
     try {
         const students = await getAllStudents();
