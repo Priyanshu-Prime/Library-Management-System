@@ -36,6 +36,8 @@ const oneBook = async(req, res) =>
 const createBook = async(req, res) =>
 {
     const {id, name, author} = req.body;
+    console.log(req.body);
+    console.log(`${id} ${name} ${author}`);
     try
     {
         const book = await addBook(id, name, author);

@@ -4,7 +4,7 @@ const getAllBooks = async() =>
 {
     try 
     {
-        const data = await pool.query("SELECT * FROM book");
+        const data = await pool.query("SELECT * FROM book ORDER BY(id)");
         return data.rows;
     }
     catch(err)
@@ -39,6 +39,7 @@ const addBook = async(id, name, author) =>
     catch(err)
     {
         console.log("Error in addBook in book.js");
+        console.log(err.stack);
         throw err;
     }
 };
