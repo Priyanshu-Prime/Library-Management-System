@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
 import Inventory from './pages/inventory/Inventory'
+import BooksIssued from './pages/booksIssued/BooksIssued'
+import BookRequests from './pages/requests/BookRequests'
+import AccountInfo from './pages/accountInfo/AccountInfo'
 
 const App = () => {
   return (
@@ -11,6 +14,9 @@ const App = () => {
         <Route path="/" element={<LoginPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/inventory" element={<Inventory />} />
+        <Route path="/issued" element={<BooksIssued />} />
+        <Route path="/requests" element={<BookRequests />} />
+        <Route path="/profile" element={<AccountInfo />} />
       </Routes>
     </BrowserRouter>
   )
