@@ -4,7 +4,7 @@ import Profile from './Profile'
 
 const Sidebar = () => {
   return (
-    <div className='h-full w-1/5 bg-[#64CF7BDE]'>
+    <div className='h-full w-1/5 bg-[#64CF7BDE] sticky top-0'>
         <div className='h-2/5 w-full flex flex-col justify-center'>
             <Profile height='50px' width='50px' />
             <div className='h-1/2 self-center content-center text-2xl font-normal'>Welcome User</div>
