@@ -10,9 +10,10 @@ const Sidebar = () => {
             <div className='h-1/2 self-center content-center text-2xl font-normal'>Welcome User</div>
         </div>
         <div className='h-3/5 w-full flex flex-col pt-20'>
-            <SidebarRow row_content='Book Inventory'/>
-            <SidebarRow row_content='Books Issued'/>
-            <SidebarRow row_content='Account Info'/>
+            <SidebarRow redirectUrl='inventory' row_content='Book Inventory' />
+            <SidebarRow redirectUrl='issued' row_content='Books Issued' />
+            <SidebarRow redirectUrl='requests' row_content='Book Requests' />
+            <SidebarRow redirectUrl='profile' row_content='Account Info' />
         </div>
     </div>
   )

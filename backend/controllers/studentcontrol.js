@@ -62,7 +62,7 @@ const removeStudent = async(req, res) =>
     {
         console.log("Error in removeStudent in studentcontrol.js");
         res.status(500).json({ error: "Failed to remove student" });
-    }
+    }   
 }
 
 module.exports = {allStudents, studentByID, createStudent, changeStudent, removeStudent}
