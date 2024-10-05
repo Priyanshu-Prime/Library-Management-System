@@ -52,7 +52,7 @@ const sendEmail = async(req, res) =>
     }
     catch(err)
     {
-        console.error("Error in checking overdue books: ", err);
+        console.error("Error in checking overdue books in sendEmail: ", err);
     }
 };
 

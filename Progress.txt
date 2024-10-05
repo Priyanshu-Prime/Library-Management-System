@@ -1,0 +1,12 @@
+Please write about all the progress in the project.
+
+Backend:
+1. Server side handling for books , students, and issuing has been completed.
+2. Mail reminder setup is complete and inplace.
+3. 
+
+
+Frontend:
+No clue @     @    
+           U
+         _____ 
