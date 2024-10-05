@@ -35,7 +35,7 @@ const Inventory = () => {
             {books.length > 0 ? (
                     <div className="w-full p-10 flex flex-wrap justify-between">
                         {books.map((book) => (
-                            <BookCard name={book.name} author={book.author} />
+                            <BookCard name={book.name} author={book.author} image={book.image} />
                         ))}
                     </div>
                 ) : (

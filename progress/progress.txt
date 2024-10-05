@@ -1,0 +1,16 @@
+Please write about all the progress in the project.
+
+Backend:
+1. Server side handling for books , students, and issuing has been completed.
+2. Mail reminder setup is complete and inplace.
+3. 
+
+
+Frontend:
+1. Created draft pages for login, dashboard, inventory, books issued.
+2. Setup API calls to fetch book and user data.
+3. Created an inventory page preview with book cards (including cover images).
+
+
+Note:
+> Add an image column in the books table and insert cdn images for each book entry. (refer book_schema)
