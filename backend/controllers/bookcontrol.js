@@ -5,6 +5,7 @@ const allBooks = async(req, res) =>
     try
     {
         const books = await getAllBooks();
+        console.log("get books req");
         res.status(200).json(books);
     }
     catch (err)
@@ -36,6 +37,8 @@ const oneBook = async(req, res) =>
 const createBook = async(req, res) =>
 {
     const {id, name, author} = req.body;
+    console.log(req.body);
+    console.log(`${id} ${name} ${author}`);
     try
     {
         const book = await addBook(id, name, author);
