@@ -4,7 +4,7 @@ const getAllRecords = async() =>
 {
     try
     {
-        const data = await pool.query("SELECT * FROM issues");
+        const data = await pool.query("SELECT issues.book_id, book.name as title, issues.student_id, student.name, issues.date_of_issue, issues.date_of_return FROM issues JOIN book ON book.id = issues.book_id JOIN student ON issues.student_id = student.roll_no");
         return data.rows;
     }
     catch (err)

@@ -37,7 +37,9 @@ const BooksIssued = () => {
                         {books.map((book) => (
                             <div key={book.id} className="p-4 mb-2 rounded shadow">
                                 <h3 className="text-lg font-bold">{book.book_id}</h3>
+                                <h3 className="text-lg font-bold">{book.title}</h3>
                                 <p className="text-gray-700">Student ID: {book.student_id}</p>
+                                <p className="text-gray-700">Student Name: {book.name}</p>
                                 <p className="text-gray-700">Date of Return: {book.date_of_return.split('T')[0]}</p>
                             </div>
                         ))}
