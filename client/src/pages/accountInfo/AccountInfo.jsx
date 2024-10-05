@@ -5,11 +5,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
 
+const PORT = import.meta.env.VITE_SERVER_PORT;
+
 const AccountInfo = () => {
     const [students, setStudents] = useState([]) 
 
     const fetchBooks = async () => {
-        const url = `http://localhost:3001/api/students`
+        const url = `http://localhost:${PORT}/api/students`
 
         try {
             const response = await axios.get(url)

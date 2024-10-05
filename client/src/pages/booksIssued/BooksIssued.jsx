@@ -5,12 +5,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
 
-const port = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_SERVER_PORT;
+
 const BooksIssued = () => {
     const [books, setBooks] = useState([]) 
 
     const fetchBooks = async () => {
-        const url = `http://localhost:${port}/api/issues`
+        const url = `http://localhost:${PORT}/api/issues`
 
         try {
             const response = await axios.get(url)

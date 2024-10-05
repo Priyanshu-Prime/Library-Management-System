@@ -13,4 +13,5 @@ Frontend:
 
 
 Note:
+> Add a .env file in client directory add the following entry {VITE_SERVER_PORT=____}.
 > Add an image column in the books table and insert cdn images for each book entry. (refer book_schema)
