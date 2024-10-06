@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+  id     String  @id
+  name   String
+  author String
+  image  String?
+  issues issues?
+}
+
+model issues {
+  book_id        String   @id
+  student_id     Int?
+  date_of_issue  DateTime @db.Date
+  date_of_return DateTime @db.Date
+  book           book     @relation(fields: [book_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  student        student? @relation(fields: [student_id], references: [roll_no], onDelete: NoAction, onUpdate: NoAction)
+}
+
+model student {
+  roll_no Int      @id
+  name    String
+  email   String
+  contact String
+  issues  issues[]
+}

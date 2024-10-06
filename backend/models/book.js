@@ -1,79 +1,93 @@
-const pool = require("../config/db");
+const { PrismaClient } = require('@prisma/client');
 
-const getAllBooks = async() =>
-{
-    try 
-    {
-        const data = await pool.query("SELECT * FROM book ORDER BY(id)");
-        return data.rows;
+const prisma = new PrismaClient()
+
+const getAllBooks = async() => {
+    try {
+        const allBooks = await prisma.book.findMany();
+        return allBooks;
     }
-    catch(err)
-    {
+    catch(err) {
         console.log("Error in getAllBooks in book.js");
+        console.log(err.stack);
+        throw err;
+    }
+}
+
+const getBookByID = async(id) => {
+    try {
+        const bookByID = await prisma.book.findUnique({
+            where: {
+                id: id
+            }
+        });
+        return bookByID;
+    }
+    catch(err) {
+        console.log("Error in getBookByID in book.js", err);
         console.log(err.stack);
         throw err;
     }
 };
 
-const getBookByID = async(id) =>
-{
-    try
-    {
-        const data = await pool.query("SELECT * FROM book WHERE id=$1", [id]);
-        return data.rows[0];
+const addBook = async(id, name, author, image) => {
+    try {
+        const newBook = await prisma.book.create({
+            data: {
+                id: id,
+                name: name,
+                author: author,
+                image: image
+            }
+        });
+        return newBook;
     }
-    catch(err)
-    {
-        console.log("Error in getBookByID in book.js");
-        throw err;
-    }
-};
-
-const addBook = async(id, name, author) =>
-{
-    try
-    {
-        const data = await pool.query("INSERT INTO book VALUES($1, $2, $3) RETURNING *", [id, name, author]);
-        return data.rows[0];
-    }
-    catch(err)
-    {
+    catch(err) {
         console.log("Error in addBook in book.js");
         console.log(err.stack);
         throw err;
     }
 };
 
-const updateBook = async(id, name, author, old) =>
-{
-    console.log(`${old} ${id} ${name} ${author}`);
-    try
-    {
-        const data = await pool.query("UPDATE book SET id=$1, name=$2, author=$3 WHERE id=$4", [id, name, author, old]);
+const updateBook = async(id, name, author, image, old) => {
+    console.log(`${old} ${id} ${name} ${author} ${image}`);
+    try {
+        const updatedBook = await prisma.book.update({
+            where: {
+                id: old
+            },
+            data: {
+                id: id,
+                name: name,
+                author: author,
+                image: image
+            }
+        });
         console.log("Updated book details successfully");
-        return data.rows[0];
+        return updatedBook;
     }
-    catch(err)
-    {
+    catch(err) {
         console.log("Error in updateBook in book.js");
         console.log(err.stack);
         throw err;
     }
 };
 
-const deleteBook = async(id) =>
-{
-    try
-    {
-        const data = await pool.query("DELETE FROM book WHERE id=$1", [id]);
+const deleteBook = async(id) => {
+    try {
+        const deletedBook = await prisma.book.delete({
+            where: {
+                id: id
+            }
+        });
         console.log("Book deleted");
+        return deletedBook;
     }
-    catch(err)
-    {
+    catch(err) {    
         console.log("Error in deleteBook in book.js");
         console.log(err.stack);
         throw err;
     }
-};
+}
 
 module.exports = {getAllBooks, getBookByID, addBook, updateBook, deleteBook};

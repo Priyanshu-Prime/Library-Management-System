@@ -36,12 +36,10 @@ const oneBook = async(req, res) =>
 
 const createBook = async(req, res) =>
 {
-    const {id, name, author} = req.body;
-    console.log(req.body);
-    console.log(`${id} ${name} ${author}`);
+    const {id, name, author, image} = req.body;
     try
     {
-        const book = await addBook(id, name, author);
+        const book = await addBook(id, name, author, image);
         res.status(201).json(book);
     }
     catch(err)
@@ -54,11 +52,10 @@ const createBook = async(req, res) =>
 const changeBook = async(req, res) =>
 {
     const {oldid} = req.params;
-    const {id, name, author} = req.body;
-    console.log(id);
+    const {id, name, author, image} = req.body;
     try
     {
-        const book = await updateBook(id, name, author, oldid);
+        const book = await updateBook(id, name, author, image, oldid);
         res.status(200).json(book);
     }
     catch(err)
