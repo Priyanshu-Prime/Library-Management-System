@@ -1,8 +1,8 @@
 const express = require('express');
-const pg = require('pg');
+// const pg = require('pg');
 const app = express();
 const dotenv = require('dotenv');
-const dbpool = require("./config/db");
+// const dbpool = require("./config/db");
 const cors = require("cors");
 const bookRoutes = require("./routes/bookroutes");
 const studentRoutes = require("./routes/studentroutes");
