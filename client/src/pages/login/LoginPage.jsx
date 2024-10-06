@@ -14,7 +14,7 @@ const LoginPage = () => {
               onError={() => {
                 console.log('Login Failed');
               }}
-            />;
+            />
                 <div className='h-1/4 w-full text-center place-content-center font-light text-4xl'>LOGIN</div>
                 <div className='h-2/3 w-full flex flex-col justify-center'>
                     <input className='h-12 w-2/3 self-center rounded-3xl placeholder:text-center' placeholder='Email' />

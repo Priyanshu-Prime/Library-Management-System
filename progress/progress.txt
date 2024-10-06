@@ -3,7 +3,7 @@ Please write about all the progress in the project.
 Backend:
 1. Server side handling for books , students, and issuing has been completed.
 2. Mail reminder setup is complete and inplace.
-3. 
+3. Updated backend models to use Prisma queries instead of regular SQL queries. Old models backed up as model_v0.
 
 
 Frontend:
@@ -15,3 +15,9 @@ Frontend:
 Note:
 > Add a .env file in client directory add the following entry {VITE_SERVER_PORT=____}.
 > Add an image column in the books table and insert cdn images for each book entry. (refer book_schema)
+> Update backend .env file.
+    Old environment variables can be removed.
+    Replace with a single variable as following:
+        DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+    Refer 'https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/connect-your-database-node-postgresql' for more information.
+    Run 'npm i' to install Prisma, remaining setup already done.
