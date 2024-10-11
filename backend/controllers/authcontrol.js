@@ -5,7 +5,7 @@ const JWT_SECRET=process.env.JWT_SECRET;
 
 const googleLogin = (req, res) =>
 {
-    const {email} = req.body;
+    const {name, email} = req.body;
 
     const emailDomain = email.split('@')[1];
 
@@ -16,7 +16,7 @@ const googleLogin = (req, res) =>
     }
     const token = jwt.sign({email}, JWT_SECRET, {expiresIn: '1h'});
 
-    res.status(200).json({token, message: "Login successful!"});
+    res.status(200).json({token, name, message: "Login successful!"});
     console.log("Email accepted login done");
 }
 
