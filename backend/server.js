@@ -7,6 +7,7 @@ const cors = require("cors");
 const bookRoutes = require("./routes/bookroutes");
 const studentRoutes = require("./routes/studentroutes");
 const issueRoutes = require("./routes/issuingroutes");
+const authRoutes = require("./routes/authroutes");
 // const emailRoutes = require("./routes/emailroutes");
 
 dotenv.config();
@@ -27,4 +28,5 @@ require("./schedulers/emailscheduler");
 app.use("/api", bookRoutes);
 app.use("/api", studentRoutes);
 app.use("/api", issueRoutes);
+app.use("/api", authRoutes);
 // app.use("/api", emailRoutes);

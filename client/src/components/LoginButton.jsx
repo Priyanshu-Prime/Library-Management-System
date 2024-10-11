@@ -11,6 +11,7 @@ const LoginButton = () => {
   
       try {
         // Send the credential to the backend for verification
+        console.log(`http://localhost:${PORT}/api/auth/google-login`);
         const response = await fetch(`http://localhost:${PORT}/api/auth/google-login`, {
           method: 'POST',
           headers: {
@@ -28,7 +29,7 @@ const LoginButton = () => {
           console.log('Login failed:', data.message);
         }
       } catch (error) {
-        console.error('Error logging in:', error);
+        console.error('Error logging in: ', error);
       }
     };
   
