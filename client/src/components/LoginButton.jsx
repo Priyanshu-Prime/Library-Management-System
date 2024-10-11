@@ -7,7 +7,7 @@ const LoginButton = () => {
 
     const handleGoogleSuccess = async (credentialResponse) => {
       const decoded = jwtDecode(credentialResponse?.credential);
-      const { email } = decoded;
+      const { name, email } = decoded;
   
       try {
         // Send the credential to the backend for verification
@@ -17,13 +17,14 @@ const LoginButton = () => {
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email }), // Send the email to the backend
+          body: JSON.stringify({ name, email }), // Send the email to the backend
         });
   
         const data = await response.json();
   
         if (response.ok) {
           // Redirect to dashboard after successful login
+          localStorage.setItem('userName', name);
           window.location.href = 'http://localhost:5173/dashboard';
         } else {
           console.log('Login failed:', data.message);
