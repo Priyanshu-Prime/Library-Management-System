@@ -12,5 +12,6 @@ router.patch("/books/:oldid", changeBook);
 
 router.delete("/books/:id", removeBook);
 
-router.get("/books/filter:searchText",bookFilter);
+router.get("/books/filter/:searchterm", bookFilter);
+
 module.exports = router;

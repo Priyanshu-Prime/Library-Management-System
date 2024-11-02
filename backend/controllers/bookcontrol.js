@@ -82,9 +82,10 @@ const removeBook = async(req, res) =>
 };
 
 const bookFilter = async(req,res) => {
-    const {searchText} = req.param;
+    const {searchterm} = req.params;
+    console.log(searchterm);
     try {
-        const records = await filterBooks(searchText);
+        const records = await filterBooks(searchterm);
         res.status(200).json(records);
     }
     catch(err) {
