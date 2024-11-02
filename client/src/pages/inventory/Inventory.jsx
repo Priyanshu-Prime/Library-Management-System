@@ -11,8 +11,17 @@ const PORT = import.meta.env.VITE_SERVER_PORT;
 const Inventory = () => {
     const [books, setBooks] = useState([]) 
 
-    const fetchBooks = async () => {
-        const url = `http://localhost:${PORT}/api/books`
+    const fetchBooks = async (searchParams) => {
+        let url;
+        if(searchParams)
+        {
+            const query = new URLSearchParams(searchParams).toString();
+            url = `http://localhost:${PORT}/api/books/filter/${query}`;
+        }
+        else
+        {
+            url = `http://localhost:${PORT}/api/books`
+        }
 
         try {
             const response = await axios.get(url)
