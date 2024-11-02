@@ -14,31 +14,31 @@ const getAllBooks = async() => {
     }
 }
 
-const filterBooks = async(req, res) => {
-    try {
-        const {author, genre, subject, sortOrder} = req.query;
-        const filters = {};
-        if (author) filters.author = author;
-        if (genre) filters.genre = genre;
-        if (subject) filters.subject = subject;
+// const filterBooks = async(req, res) => {
+//     try {
+//         const {author, genre, subject, sortOrder} = req.query;
+//         const filters = {};
+//         if (author) filters.author = author;
+//         if (genre) filters.genre = genre;
+//         if (subject) filters.subject = subject;
 
-        const books = await prisma.book.findMany(
-            {
-                where: filters,
-                orderBy:
-                {
-                    title: sortOrder === 'asc' ? 'asc' : 'desc',
-                }
-            }
-        );
-        return books;
-    }
-    catch(err)
-    {
-        console.error("Error in fetching the books: ", error);
-        res.status(500).json({error: 'Failed in fetching the books in filterBooks in book.js'});
-    }
-};
+//         const books = await prisma.book.findMany(
+//             {
+//                 where: filters,
+//                 orderBy:
+//                 {
+//                     title: sortOrder === 'asc' ? 'asc' : 'desc',
+//                 }
+//             }
+//         );
+//         return books;
+//     }
+//     catch(err)
+//     {
+//         console.error("Error in fetching the books: ", error);
+//         res.status(500).json({error: 'Failed in fetching the books in filterBooks in book.js'});
+//     }
+// };
 
 const getBookByID = async(id) => {
     try {

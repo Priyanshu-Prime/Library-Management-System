@@ -25,7 +25,7 @@ const LoginButton = () => {
   
         if (response.ok) {
           // Redirect to dashboard after successful login
-          const admin = ['221145'];
+          const admin = ['221145','221164'];
           const uid = data.emailUser;
           localStorage.setItem('userName', name);
           if (!admin.includes(uid))
