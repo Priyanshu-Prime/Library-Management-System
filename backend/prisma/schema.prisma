@@ -12,7 +12,7 @@ model book {
   name   String
   subject String
   author String
-  publication String
+  publication String?
   image  String?
   issues issues?
 }

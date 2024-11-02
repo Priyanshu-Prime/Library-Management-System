@@ -15,11 +15,12 @@ const Inventory = () => {
         let url;
         if(searchParams)
         {
-            const query = new URLSearchParams(searchParams).toString();
-            url = `http://localhost:${PORT}/api/books/filter/${query}`;
+            console.log(searchParams);
+            url = `http://localhost:${PORT}/api/books/filter/${searchParams}`;
         }
         else
         {
+            console.log("No query passed");
             url = `http://localhost:${PORT}/api/books`
         }
 
@@ -29,7 +30,8 @@ const Inventory = () => {
             console.log(books)
         }
         catch(error) {
-            console.log(error)
+            console.log("Error in Inventory fetchbook");
+            console.log(error);
         }
     }
 
@@ -37,11 +39,16 @@ const Inventory = () => {
         fetchBooks()
     }, [])
 
+    const handleSearch = (searchTerm) =>
+    {
+        fetchBooks(searchTerm);
+    }
+
     return (
         <div className="h-screen w-screen flex">
             <Sidebar />
             <div className="h-full w-4/5 bg-[#A1EEC5] flex flex-col overflow-y-auto">
-            <InventoryTopBar />
+            <InventoryTopBar onSearch={handleSearch}/>
             {books.length > 0 ? (
                     <div className="w-full p-10 flex flex-wrap justify-between">
                         {books.map((book) => (

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export default function App({onSearch}) {
+export default function SearchBar({onSearch}) {
     const [searchTerm, setSearchTerm] = useState('');
 
     const handleInputChange = (e) => {
