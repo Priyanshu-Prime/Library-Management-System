@@ -1,4 +1,4 @@
-const {getAllBooks, getBookByID, addBook, updateBook, deleteBook} = require("../models/book");
+const {getAllBooks, getBookByID, addBook, updateBook, deleteBook,filterBooks} = require("../models/book");
 
 const allBooks = async(req, res) =>
 {
@@ -81,4 +81,16 @@ const removeBook = async(req, res) =>
     }
 };
 
-module.exports = {allBooks, oneBook, createBook, changeBook, removeBook};
+const bookFilter = async(req,res) => {
+    const {searchText} = req.param;
+    try {
+        const records = await filterBooks(searchText);
+        res.status(200).json(records);
+    }
+    catch(err) {
+        console.log("Error in bookFilter in bookcontrol.js");
+        throw err;
+    }
+}
+
+module.exports = {allBooks, oneBook, createBook, changeBook, removeBook,bookFilter};

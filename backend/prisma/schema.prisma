@@ -10,7 +10,9 @@ datasource db {
 model book {
   id     String  @id
   name   String
+  subject String
   author String
+  publication String
   image  String?
   issues issues?
 }

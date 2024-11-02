@@ -116,4 +116,40 @@ const deleteBook = async(id) => {
     }
 }
 
-module.exports = {getAllBooks, getBookByID, addBook, updateBook, deleteBook};
+const filterBooks = async(searchText) =>{
+    try {
+        const filteredRecords =  await prisma.book.findMany({
+            where: {
+                OR: [
+                    {
+                        name: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                        author: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                        publication: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                        subject: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    }
+                ],
+            },
+        });
+        console.log("Filtered Books are on the way!");
+        return filteredRecords;
+    }
+    catch(err) {
+        console.log("Error in filtering books! in books.js");
+        console.log(err.stack);
+        throw err;
+    }
+}
+
+module.exports = {getAllBooks, getBookByID, addBook, updateBook, deleteBook,filterBooks};

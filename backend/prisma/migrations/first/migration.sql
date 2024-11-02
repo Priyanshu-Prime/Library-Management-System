@@ -2,7 +2,9 @@
 CREATE TABLE "book" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "subject" TEXT NOT NULL,
     "author" TEXT NOT NULL,
+    "publication" TEXT NOT NULL,
     "image" TEXT,
 
     CONSTRAINT "book_pkey" PRIMARY KEY ("id")
@@ -33,4 +35,3 @@ ALTER TABLE "issues" ADD CONSTRAINT "issues_book_id_fkey" FOREIGN KEY ("book_id"
 
 -- AddForeignKey
 ALTER TABLE "issues" ADD CONSTRAINT "issues_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "student"("roll_no") ON DELETE NO ACTION ON UPDATE NO ACTION;
-

@@ -4,7 +4,7 @@ Backend:
 1. Server side handling for books , students, and issuing has been completed.
 2. Mail reminder setup is complete and inplace.
 3. Updated backend models to use Prisma queries instead of regular SQL queries. Old models backed up as models/model_v0.
-
+4. Updated prisma model for books (Added subject and publication).
 
 Frontend:
 1. Created draft pages for login, dashboard, inventory, books issued.
@@ -22,3 +22,4 @@ Note:
         
     Refer 'https://www.prisma.io/docs/getting-started/setup-prisma/add-to-existing-project/relational-databases/connect-your-database-node-postgresql' for more information.
     Run 'npm i' to install Prisma, remaining setup already completed.
+> Made files for issued books and books to be added in database for testing purposes.
