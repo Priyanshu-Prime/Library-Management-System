@@ -8,6 +8,7 @@ const googleLogin = (req, res) =>
     const {name, email} = req.body;
 
     const emailDomain = email.split('@')[1];
+    const emailUser = email.split('@')[0];
 
     if (emailDomain != ALLOWED_DOMAIN)
     {
@@ -16,7 +17,7 @@ const googleLogin = (req, res) =>
     }
     const token = jwt.sign({email}, JWT_SECRET, {expiresIn: '1h'});
 
-    res.status(200).json({token, name, message: "Login successful!"});
+    res.status(200).json({token, name, emailUser, message: "Login successful!"});
     console.log("Email accepted login done");
 }
 

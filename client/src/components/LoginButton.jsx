@@ -11,6 +11,7 @@ const LoginButton = () => {
   
       try {
         // Send the credential to the backend for verification
+        
         console.log(`http://localhost:${PORT}/api/auth/google-login`);
         const response = await fetch(`http://localhost:${PORT}/api/auth/google-login`, {
           method: 'POST',
@@ -24,8 +25,17 @@ const LoginButton = () => {
   
         if (response.ok) {
           // Redirect to dashboard after successful login
+          const admin = ['221145'];
+          const uid = data.emailUser;
           localStorage.setItem('userName', name);
-          window.location.href = 'http://localhost:5173/dashboard';
+          if (!admin.includes(uid))
+          {
+            window.location.href = 'http://localhost:5173/dashboard';
+          }
+          else
+          {
+            window.location.href = 'http://localhost:5173/adminDashboard';
+          }
         } else {
           console.log('Login failed:', data.message);
         }
