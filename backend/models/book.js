@@ -126,19 +126,25 @@ const filterBooks = async(searchText) =>{
                             contains: searchText,
                             mode: 'insensitive',
                         },
+                    },
+                    {
                         author: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
+                    },
+                    {
                         publication: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
+                    },
+                    {
                         subject: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
-                    }
+                    },
                 ],
             },
         });
