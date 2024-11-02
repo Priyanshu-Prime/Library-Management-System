@@ -1,11 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-export default function App() {
+export default function App({onSearch}) {
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleInputChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+
+    const handleSearch = () => {
+        // Trigger the onSearch function, sending the search term to the parent component
+        onSearch(searchTerm);
+    };
   return (
       <div className="mb-3 xl:w-96">
           <div className="relative mb-4 flex w-full flex-wrap items-stretch">
               <input
                   type="search"
+                  value={searchTerm}
+                  onChange={handleInputChange}
                   className="relative m-0 block flex-auto rounded border-solid border-neutral-300 bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-black dark:focus:border-primary bg-[#64CF7BDE]"
                   placeholder="Search"
                   aria-label="Search"
@@ -14,7 +26,7 @@ export default function App() {
               {/* <!--Search icon--> */}
               <span
                   className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-black"
-                  id="basic-addon2">
+                  id="basic-addon2" onClick={handleSearch} style={{cursor: 'pointer'}} >
                   <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
