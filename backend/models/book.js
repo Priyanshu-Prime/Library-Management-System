@@ -121,24 +121,29 @@ const filterBooks = async(searchText) =>{
         const filteredRecords =  await prisma.book.findMany({
             where: {
                 OR: [
+                    
+                    { name: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {    author: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
                     {
-                        name: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        },
-                        author: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        },
                         publication: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
+                    },
+                    { 
                         subject: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
-                    }
+                    },
                 ],
             },
         });
