@@ -28,6 +28,7 @@ const LoginButton = () => {
           const admin = ['221145','221164'];
           const uid = data.emailUser;
           localStorage.setItem('userName', name);
+          localStorage.setItem('uid', uid);
           if (!admin.includes(uid))
           {
             window.location.href = 'http://localhost:5173/dashboard';

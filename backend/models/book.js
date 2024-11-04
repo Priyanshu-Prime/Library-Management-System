@@ -44,7 +44,7 @@ const getBookByID = async(id) => {
     try {
         const bookByID = await prisma.book.findUnique({
             where: {
-                id: ids
+                id: id
             }
         });
         return bookByID;
@@ -133,31 +133,12 @@ const filterBooks = async(searchText) =>{
                         },
                     },
                     {
-<<<<<<< HEAD
-                        name: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        },
-                    },
-                    {
-                        author: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        },
-                    },
-                    {
-=======
->>>>>>> main
                         publication: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
                     },
-<<<<<<< HEAD
-                    {
-=======
                     { 
->>>>>>> main
                         subject: {
                             contains: searchText,
                             mode: 'insensitive',

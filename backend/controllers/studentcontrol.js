@@ -2,6 +2,7 @@ const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent
 
 const allStudents = async (req, res) => {
     try {
+        // console.log("ADD IDS CALLED");
         const students = await getAllStudents();
         res.status(200).json(students);
     }
@@ -13,8 +14,11 @@ const allStudents = async (req, res) => {
 
 const studentByID = async (req, res) => {
     const {id} = req.params;
+    // console.log(id);
     try {
         const students = await getStudentByID(id);
+        console.log(`This is in controller`);
+        console.log(students);
         res.status(200).json(students);
     }
     catch (err) {
