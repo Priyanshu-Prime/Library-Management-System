@@ -50,7 +50,7 @@ const defaultersList = async (req, res) => {
 //ADD A REMOVE RECORD FUNCTION TOO
 const recordDelete = async(req,res) => {
     try {
-        const id = req.params;
+        const id = req.params.id;
         const deletedRecords = await deleteRecord(id);
         res.status(200).json({message: "Record Deleted Succesfully!"});
     } 
