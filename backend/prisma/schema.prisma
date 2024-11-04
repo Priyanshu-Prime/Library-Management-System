@@ -33,3 +33,8 @@ model student {
   contact String
   issues  issues[]
 }
+
+model admin {
+  email String @id
+  name String
+}

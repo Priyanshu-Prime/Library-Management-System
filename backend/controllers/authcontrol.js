@@ -3,6 +3,8 @@ const jwt = require('jsonwebtoken');
 const ALLOWED_DOMAIN = 'iiitt.ac.in';
 const JWT_SECRET=process.env.JWT_SECRET;
 
+const {checkIfAdmin} = require("../models/admin");
+
 const googleLogin = (req, res) =>
 {
     const {name, email} = req.body;

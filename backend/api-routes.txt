@@ -3,4 +3,4 @@
 
 - /api/students    -----> GET All Students, POST new Student
 - /api/students/:id    ---------> GET one student, PUT one student, DELETE one student
-- api/issued/:id     ----------> get and delete
+- api/issued/:id     ----------> Get all records and DELETE on record using book_id.
