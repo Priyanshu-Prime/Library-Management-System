@@ -97,7 +97,7 @@ const deleteRecord = async(id) => {
     try {
         const deletedRecords = await prisma.issues.delete({
             where : {
-                id : id
+                book_id : id
             }
         });
         console.log("Issue Record deleted!");

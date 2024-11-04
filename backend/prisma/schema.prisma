@@ -8,13 +8,13 @@ datasource db {
 }
 
 model book {
-  id     String  @id
-  name   String
-  subject String
-  author String
+  id          String  @id
+  name        String
+  author      String
+  image       String?
+  subject     String?
   publication String?
-  image  String?
-  issues issues?
+  issues      issues?
 }
 
 model issues {
