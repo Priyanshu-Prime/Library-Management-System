@@ -133,12 +133,31 @@ const filterBooks = async(searchText) =>{
                         },
                     },
                     {
+<<<<<<< HEAD
+                        name: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        author: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+=======
+>>>>>>> main
                         publication: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
                     },
+<<<<<<< HEAD
+                    {
+=======
                     { 
+>>>>>>> main
                         subject: {
                             contains: searchText,
                             mode: 'insensitive',
