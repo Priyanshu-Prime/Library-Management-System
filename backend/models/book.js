@@ -121,7 +121,19 @@ const filterBooks = async(searchText) =>{
         const filteredRecords =  await prisma.book.findMany({
             where: {
                 OR: [
+                    
+                    { name: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {    author: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
                     {
+<<<<<<< HEAD
                         name: {
                             contains: searchText,
                             mode: 'insensitive',
@@ -134,12 +146,18 @@ const filterBooks = async(searchText) =>{
                         },
                     },
                     {
+=======
+>>>>>>> main
                         publication: {
                             contains: searchText,
                             mode: 'insensitive',
                         },
                     },
+<<<<<<< HEAD
                     {
+=======
+                    { 
+>>>>>>> main
                         subject: {
                             contains: searchText,
                             mode: 'insensitive',
@@ -148,11 +166,10 @@ const filterBooks = async(searchText) =>{
                 ],
             },
         });
-        console.log("Filtered Books are on the way!");
         return filteredRecords;
     }
     catch(err) {
-        console.log("Error in filtering books! in books.js");
+        console.log("Error in filtering books in books.js");
         console.log(err.stack);
         throw err;
     }

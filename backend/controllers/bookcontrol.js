@@ -5,7 +5,7 @@ const allBooks = async(req, res) =>
     try
     {
         const books = await getAllBooks();
-        console.log("get books req");
+        // console.log("get books req");
         res.status(200).json(books);
     }
     catch (err)
@@ -83,7 +83,7 @@ const removeBook = async(req, res) =>
 
 const bookFilter = async(req,res) => {
     const {searchterm} = req.params;
-    console.log(searchterm);
+    // console.log(searchterm);
     try {
         const records = await filterBooks(searchterm);
         res.status(200).json(records);
