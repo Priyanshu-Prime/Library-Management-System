@@ -147,11 +147,10 @@ const filterBooks = async(searchText) =>{
                 ],
             },
         });
-        console.log("Filtered Books are on the way!");
         return filteredRecords;
     }
     catch(err) {
-        console.log("Error in filtering books! in books.js");
+        console.log("Error in filtering books in books.js");
         console.log(err.stack);
         throw err;
     }
