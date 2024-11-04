@@ -37,7 +37,6 @@ const BooksIssued = () => {
 
     useEffect(() => {
         fetchBooks()
-        console.log("refresh")
     }, [])
 
     return (
