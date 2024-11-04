@@ -1,4 +1,4 @@
-const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters } = require("../models/issuing");
+const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord} = require("../models/issuing");
 
 const allRecords = async (req, res) => {
     try {
@@ -48,5 +48,16 @@ const defaultersList = async (req, res) => {
 };
 
 //ADD A REMOVE RECORD FUNCTION TOO
+const recordDelete = async(req,res) => {
+    try {
+        const id = req.params;
+        const deletedRecords = await deleteRecord(id);
+        res.status(200).json({message: "Record Deleted Succesfully!"});
+    } 
+    catch (err) {
+        console.log("Error in recordDelete in issuingcontrol.js!");
+        console.log(err.stack);
+    }
+}
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList};
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete};

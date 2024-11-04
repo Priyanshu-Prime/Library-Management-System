@@ -5,6 +5,7 @@ Backend:
 2. Mail reminder setup is complete and inplace.
 3. Updated backend models to use Prisma queries instead of regular SQL queries. Old models backed up as models/model_v0.
 4. Updated prisma model for books (Added subject and publication).
+5. Completed filter utility to find books using a keyword.
 
 Frontend:
 1. Created draft pages for login, dashboard, inventory, books issued.

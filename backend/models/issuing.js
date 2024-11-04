@@ -93,4 +93,21 @@ const getDefaulters = async() => {
 
 //ADD A REMOVE RECORDS FUNCTION TOO
 
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters};
+const deleteRecord = async(id) => {
+    try {
+        const deletedRecords = await prisma.issues.delete({
+            where : {
+                id : id
+            }
+        });
+        console.log("Issue Record deleted!");
+        return deletedRecords;
+    }
+    catch(err) {
+        console.log("Error in delteRecord in issuing.js!");
+        console.log(err.stack);
+        throw err;
+    }
+}
+
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord};

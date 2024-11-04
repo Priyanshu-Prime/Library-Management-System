@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/issued" element={<BooksIssued />} />
         <Route path="/requests" element={<BookRequests />} />
         <Route path="/profile" element={<AccountInfo />} />
+        <Route path="*" element={< LoginPage />} />
       </Routes>
     </BrowserRouter>
   )
