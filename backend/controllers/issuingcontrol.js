@@ -1,4 +1,4 @@
-const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord} = require("../models/issuing");
+const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues} = require("../models/issuing");
 
 const allRecords = async (req, res) => {
     try {
@@ -58,6 +58,18 @@ const recordDelete = async(req,res) => {
         console.log("Error in recordDelete in issuingcontrol.js!");
         console.log(err.stack);
     }
-}
+};
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete};
+const issuesFilter = async(req,res) => {
+    try {
+        const {searchText} = req.params;
+        console.log(searchText);
+        const filteredRecords = await filterIssues(searchText);
+        res.status(200).json(filteredRecords);
+    } 
+    catch (error) {
+        console.log("Error in filtering issues in ");  
+    }
+};
+
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter};

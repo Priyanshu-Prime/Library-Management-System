@@ -110,4 +110,43 @@ const deleteRecord = async(id) => {
     }
 }
 
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord};
+const filterIssues = async(searchText) => {
+    try {
+        const filteredRecords = await prisma.issues.findMany({
+            where: {
+                OR: [
+                    {
+                        book_id: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        student_id: searchText,
+                        mode: 'insensitve',
+                    },
+                    {
+                        date_of_issue: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        }
+                    },
+                    {
+                        date_of_return: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        }
+                    },
+                ],
+            },
+        });
+        return filteredRecords;
+    } 
+    catch (error) {
+        console.log("Error in filtering issues in issuing.js");
+        console.log(error.stack);   
+        throw(error);   
+    }
+};
+
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues};
