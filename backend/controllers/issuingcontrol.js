@@ -28,6 +28,7 @@ const recordByStudentId = async (req, res) => {
     const {id} = req.params;
     try {
         const record = await getRecordByStudentID(id);
+        // console.log(record);
         res.status(200).json(record);
     }
     catch (err) {

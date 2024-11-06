@@ -57,21 +57,28 @@ const getRecordByBookID = async(id) => {
     }
 };
 
-const getRecordByStudentID = async(id) => {
+const getRecordByStudentID = async (id) => {
     try {
         const record = await prisma.issues.findMany({
             where: {
-                student_id: Number(id)
-            }
+                student_id: Number(id),
+            },
+            include: {
+                book: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
         });
         return record;
-    }
-    catch(err) {
+    } catch (err) {
         console.log("Error in getRecordByStudentID in issuing.js");
         console.log(err.stack);
         throw err;
     }
 };
+
 
 const getDefaulters = async() => {
     try {

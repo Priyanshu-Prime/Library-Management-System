@@ -17,8 +17,8 @@ const studentByID = async (req, res) => {
     // console.log(id);
     try {
         const students = await getStudentByID(id);
-        console.log(`This is in controller`);
-        console.log(students);
+        // console.log(`This is in controller`);
+        // console.log(students);
         res.status(200).json(students);
     }
     catch (err) {
