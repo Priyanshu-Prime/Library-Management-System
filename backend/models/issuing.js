@@ -19,7 +19,8 @@ const getAllRecords = async() => {
                     }
                 },
                 date_of_issue: true,
-                date_of_return: true
+                date_of_return: true,
+                returned: true,
             },
         });
 
@@ -30,6 +31,7 @@ const getAllRecords = async() => {
             name: record.student.name, 
             date_of_issue: record.date_of_issue, 
             date_of_return: record.date_of_return,
+            status: returned ? "Returned" : "Not Returned",
         }))
 
         return formattedRecords;
@@ -178,5 +180,52 @@ const returnIssues = async(bookid) =>
         console.log(err.stack);
     }
 }
+
+const unreturnedRecords = async() =>
+{
+    try 
+    {
+        const records = await prisma.issues.findMany({
+            where:
+            {
+                returned: false,
+            },
+            select: {
+                book: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                },
+                student: {
+                    select: {
+                        roll_no: true,
+                        name: true,
+                    }
+                },
+                date_of_issue: true,
+                date_of_return: true,
+                returned: true,
+            },
+        });
+
+        const formattedRecords = records.map(record => ({
+            book_id: record.book.id,
+            title: record.book.name,
+            student_id: record.student.roll_no,
+            name: record.student.name, 
+            date_of_issue: record.date_of_issue, 
+            date_of_return: record.date_of_return,
+            status: returned ? "Returned" : "Not Returned",
+        }))
+
+        return formattedRecords;
+    }
+    catch(err)
+    {
+        console.log("Error in fetching unreturned records");
+        console.log(err.stack);
+    }
+}
  
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues};
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues};

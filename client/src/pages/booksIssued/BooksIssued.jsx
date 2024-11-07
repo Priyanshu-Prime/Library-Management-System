@@ -25,7 +25,7 @@ const BooksIssued = () => {
 
     const unissueBook = async(book_id) => {
         try {
-            const response = await axios.delete(`http://localhost:${PORT}/api/issues/delete/${book_id}`)
+            const response = await axios.delete(`http://localhost:${PORT}/api/issues/return/${book_id}`)
             console.log(response.data)
 
             await fetchBooks()
