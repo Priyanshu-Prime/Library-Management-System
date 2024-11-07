@@ -35,3 +35,6 @@ ALTER TABLE "issues" ADD CONSTRAINT "issues_book_id_fkey" FOREIGN KEY ("book_id"
 
 -- AddForeignKey
 ALTER TABLE "issues" ADD CONSTRAINT "issues_student_id_fkey" FOREIGN KEY ("student_id") REFERENCES "student"("roll_no") ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--AddReturnedColumn
+ALTER TABLE issues ADD COLUMN returned BOOLEAN DEFAULT FALSE;

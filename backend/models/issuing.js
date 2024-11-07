@@ -87,7 +87,8 @@ const getDefaulters = async() => {
         const defaulters = await prisma.issues.findMany({
             where: {
                 date_of_return: {
-                    lt: new Date()
+                    lt: new Date(),
+                    returned: false,
                 }
             }
         });
@@ -228,4 +229,4 @@ const unreturnedRecords = async() =>
     }
 }
  
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues};
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords};

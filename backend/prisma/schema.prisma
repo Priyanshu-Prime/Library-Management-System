@@ -10,10 +10,10 @@ datasource db {
 model book {
   id          String  @id
   name        String
-  author      String
-  image       String?
   subject     String?
+  author      String
   publication String?
+  image       String?
   issues      issues?
 }
 
@@ -22,6 +22,7 @@ model issues {
   student_id     Int?
   date_of_issue  DateTime @db.Date
   date_of_return DateTime @db.Date
+  returned       Boolean  @default(false)
   book           book     @relation(fields: [book_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   student        student? @relation(fields: [student_id], references: [roll_no], onDelete: NoAction, onUpdate: NoAction)
 }
@@ -36,5 +37,5 @@ model student {
 
 model admin {
   email String @id
-  name String
+  name  String
 }

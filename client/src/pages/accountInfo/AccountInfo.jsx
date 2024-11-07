@@ -80,10 +80,15 @@ const AccountInfo = () => {
                     <div className="h-5/6 w-full">
                         {issues.map((issue) => (
                             <div key={issue.id} className="p-4 flex rounded shadow justify-between items-center">
-                                <h3 className="text-md font-bold">{issue.book.name}</h3>
-                                <div className="w-1/3 text-center"> 
+                                <div className="w-1/2 text-center"> 
+                                    <h3 className="text-md font-bold">{issue.book.name}</h3>
+                                </div>
+                                <div className="w-1/6 text-center"> 
                                     <p className=" text-md text-gray-700">Date of Issue: {moment(issue.date_of_issue).format("DD-MM-YYYY")}</p>
                                     <p className="text-md text-gray-700">Date of Return: {moment(issue.date_of_return).format("DD-MM-YYYY")}</p>
+                                </div>
+                                <div className="w-1/3 text-center">
+                                    <p className="text-md text-gray-700">Status: {issue.returned ? "Returned" : "Not Returned"}</p>
                                 </div>
                             </div>
                         ))}

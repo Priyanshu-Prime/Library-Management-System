@@ -1,4 +1,4 @@
-const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues} = require("../models/issuing");
+const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues, returnIssues, unreturnedRecords} = require("../models/issuing");
 
 const allRecords = async (req, res) => {
     try {
@@ -11,6 +11,21 @@ const allRecords = async (req, res) => {
         console.log(err.stack);
     }
 };
+
+const getUnreturnedRecords = async(req, res) =>
+{
+    try
+    {
+        const record = await unreturnedRecords();
+        res.status(200).json(record);
+    }
+    catch(err)
+    {
+        console.log("Error in getUnreturnedRecords in issuingcontrol.js");
+        res.status(500).json({error: "Failed to get unreturned records"});
+        console.log(err.stack);
+    }
+}
 
 const recordByBookId = async (req, res) => {
     const {id} = req.params;
@@ -78,6 +93,7 @@ const markReturned = async(req, res) =>
     try
     {
         const { bookid } = req.params;
+        const record = await returnIssues(bookid);
         res.status(200).json({message: "Book has been returned successfully"});
     }
     catch(err)
@@ -86,4 +102,4 @@ const markReturned = async(req, res) =>
     }
 }
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned};
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords};
