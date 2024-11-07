@@ -156,4 +156,27 @@ const filterIssues = async(searchText) => {
     }
 };
 
+const returnIssues = async(bookid) =>
+{
+    try
+    {
+        await prisma.issues.updateMany({
+            where:
+            {
+                book_id: bookid,
+            },
+            data:
+            {
+                returned: true,
+            }
+        });
+        console.log(`Book ID: ${bookid} has been returned`);
+    }
+    catch(err)
+    {
+        console.log("Error in marking the book as returned");
+        console.log(err.stack);
+    }
+}
+ 
 module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues};

@@ -73,4 +73,17 @@ const issuesFilter = async(req,res) => {
     }
 };
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter};
+const markReturned = async(req, res) =>
+{
+    try
+    {
+        const { bookid } = req.params;
+        res.status(200).json({message: "Book has been returned successfully"});
+    }
+    catch(err)
+    {
+        console.log("Error in markReturned in issuingcontrol.js");
+    }
+}
+
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned};
