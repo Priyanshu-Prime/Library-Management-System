@@ -7,6 +7,11 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model admin {
+  email String @id
+  name  String
+}
+
 model book {
   id          String  @id
   name        String
@@ -33,9 +38,4 @@ model student {
   email   String
   contact String
   issues  issues[]
-}
-
-model admin {
-  email String @id
-  name  String
 }
