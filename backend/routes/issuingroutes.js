@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get("/issues", allRecords);
 
-router.get("/issues/unreturned", getUnreturnedRecords);
+router.get("/issues/unreturned", unreturnedBooks);
 
 router.get("/issues/book/:id", recordByBookId);
 
