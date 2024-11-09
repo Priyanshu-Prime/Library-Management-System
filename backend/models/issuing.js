@@ -31,7 +31,7 @@ const getAllRecords = async() => {
             name: record.student.name, 
             date_of_issue: record.date_of_issue, 
             date_of_return: record.date_of_return,
-            status: returned ? "Returned" : "Not Returned",
+            status: record.returned ? "Returned" : "Not Returned",
         }))
 
         return formattedRecords;
@@ -217,7 +217,7 @@ const unreturnedRecords = async() =>
             name: record.student.name, 
             date_of_issue: record.date_of_issue, 
             date_of_return: record.date_of_return,
-            status: returned ? "Returned" : "Not Returned",
+            status: record.returned ? "Returned" : "Not Returned",
         }))
 
         return formattedRecords;

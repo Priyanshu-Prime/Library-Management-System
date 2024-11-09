@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from 'axios';
 import returnImg from '../../assets/go-back-arrow.png'
+import moment from 'moment'
 
 const PORT = import.meta.env.VITE_SERVER_PORT;
 
@@ -12,7 +13,7 @@ const BooksIssued = () => {
     const [books, setBooks] = useState([]) 
 
     const fetchBooks = async () => {
-        const url = `http://localhost:${PORT}/api/issues`
+        const url = `http://localhost:${PORT}/api/issues/unreturned`
 
         try {
             const response = await axios.get(url)
@@ -25,7 +26,7 @@ const BooksIssued = () => {
 
     const unissueBook = async(book_id) => {
         try {
-            const response = await axios.delete(`http://localhost:${PORT}/api/issues/return/${book_id}`)
+            const response = await axios.patch(`http://localhost:${PORT}/api/issues/return/${book_id}`)
             console.log(response.data)
 
             await fetchBooks()
@@ -54,9 +55,9 @@ const BooksIssued = () => {
                                     <h3 className="text-lg font-bold">{book.title}</h3>
                                     <p className="text-gray-700">Student ID: {book.student_id}</p>
                                     <p className="text-gray-700">Student Name: {book.name}</p>
-                                    <p className="text-gray-700">Date of Return: {book.date_of_return.split('T')[0]}</p>
+                                    <p className="text-gray-700">Date of Return: {moment(book.date_of_issue).format("DD-MM-YYYY")}</p>
                                 </div>
-                                <div onClick={() => {unissueBook(book.book_id)}} className="flex flex-col justify-center">
+                                <div onClick={() => {unissueBook(book.book_id)}} className="flex flex-col justify-center" style={{cursor: 'pointer'}}>
                                     <img src={returnImg} height={20} width={20} className="self-center" />
                                     <h3 className="self-center">Return</h3>
                                 </div>
