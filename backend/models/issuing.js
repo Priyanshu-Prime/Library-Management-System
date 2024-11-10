@@ -228,5 +228,34 @@ const unreturnedRecords = async() =>
         console.log(err.stack);
     }
 }
+
+const newRecord = async(bookid, studentid, dateofissue) =>
+{
+    try
+    {
+        const date_ofissue = new Date(dateofissue);
+        const dateofreturn = new Date(dateofissue);
+        dateofreturn.setMonth(dateofreturn.getMonth()+1);
+
+        const newissue = await prisma.issues.create(
+            {
+                data:
+                {
+                    book_id: bookid,
+                    student_id: studentid,
+                    date_of_issue: date_ofissue.toISOString(),
+                    date_of_return: dateofreturn.toISOString(),
+                    returned: false
+                },
+            }
+        );
+        return newissue;
+    }
+    catch(err)
+    {
+        console.log("Error in creating new record");
+        throw err;
+    }
+}
  
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords};
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords, newRecord};

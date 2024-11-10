@@ -5,6 +5,7 @@ const prisma = new PrismaClient()
 const getAllBooks = async() => {
     try {
         const allBooks = await prisma.book.findMany();
+        // console.log("All books prisma")
         return allBooks;
     }
     catch(err) {

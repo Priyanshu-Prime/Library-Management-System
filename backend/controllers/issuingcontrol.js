@@ -1,4 +1,4 @@
-const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues, returnIssues, unreturnedRecords} = require("../models/issuing");
+const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues, returnIssues, unreturnedRecords, newRecord} = require("../models/issuing");
 
 const allRecords = async (req, res) => {
     try {
@@ -102,4 +102,23 @@ const markReturned = async(req, res) =>
     }
 }
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords};
+const createNewIssue = async(req, res) =>
+{
+    try
+    {
+        const {bookid, studentid, dateofissue} = req.body;
+        if(!bookid || !studentid || !dateofissue)
+        {
+            return res.status(400).json({error: "Missing required fields"});
+        }
+        const newIssue = newRecord(bookid, studentid, dateofissue);
+        res.status(201).json(newIssue);
+    }
+    catch(err)
+    {
+        console.log("Error in createNewIssue in issuingcontrol.js");
+        res.status(500).json({error: "Failed to create issue"});
+    }
+}
+
+module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords, createNewIssue};

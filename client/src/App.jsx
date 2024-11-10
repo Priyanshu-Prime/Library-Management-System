@@ -7,6 +7,7 @@ import Inventory from './pages/inventory/Inventory'
 import BooksIssued from './pages/booksIssued/BooksIssued'
 import BookRequests from './pages/requests/BookRequests'
 import AccountInfo from './pages/accountInfo/AccountInfo'
+import NewIssue from './pages/newIssue/NewIssue'
 import {gapi} from 'gapi-script'
 import { GoogleLogin } from '@react-oauth/google';
 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/issued" element={<BooksIssued />} />
         <Route path="/requests" element={<BookRequests />} />
         <Route path="/profile" element={<AccountInfo />} />
+        <Route path="/newissue" element={<NewIssue />} />
         <Route path="*" element={< LoginPage />} />
       </Routes>
     </BrowserRouter>
