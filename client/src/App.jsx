@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginPage from './pages/login/LoginPage'
 import Dashboard from './pages/dashboard/Dashboard'
@@ -7,24 +6,25 @@ import Inventory from './pages/inventory/Inventory'
 import BooksIssued from './pages/booksIssued/BooksIssued'
 import BookRequests from './pages/requests/BookRequests'
 import AccountInfo from './pages/accountInfo/AccountInfo'
-import {gapi} from 'gapi-script'
-import { GoogleLogin } from '@react-oauth/google';
+import { UserProvider } from "./context/UserContext"
 
 const App = () => {
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/adminDashboard" element={<AdminDashboard />} />
-        <Route path="/inventory" element={<Inventory />} />
-        <Route path="/issued" element={<BooksIssued />} />
-        <Route path="/requests" element={<BookRequests />} />
-        <Route path="/profile" element={<AccountInfo />} />
-        <Route path="*" element={< LoginPage />} />
-      </Routes>
-    </BrowserRouter>
+    <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<LoginPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
+          <Route path="/inventory" element={<Inventory />} />
+          <Route path="/issued" element={<BooksIssued />} />
+          <Route path="/requests" element={<BookRequests />} />
+          <Route path="/profile" element={<AccountInfo />} />
+          <Route path="*" element={< LoginPage />} />
+        </Routes>
+      </BrowserRouter>
+    </UserProvider>
   )
 }
 

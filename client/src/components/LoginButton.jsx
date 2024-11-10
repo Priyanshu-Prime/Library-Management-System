@@ -1,9 +1,14 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
+import { useUser } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
 const PORT = import.meta.env.VITE_SERVER_PORT;
 
 const LoginButton = () => {
+  const { setUser } = useUser();
+  const navigate = useNavigate();
+
   const handleGoogleSuccess = async (credentialResponse) => {
     const decoded = jwtDecode(credentialResponse?.credential);
     const { name, email } = decoded;
@@ -28,12 +33,15 @@ const LoginButton = () => {
         // Redirect to dashboard after successful login
         const admin = ["221145", "221164", "221154"];
         const uid = data.emailUser;
-        console.log(uid);
-        localStorage.setItem("userName", name);
+
+        setUser({ name, uid, isAdmin: admin.includes(uid) });
+        // localStorage.setItem("userName", name);
+        // localStorage.setItem("uid", uid);
+        
         if (!admin.includes(uid)) {
-          window.location.href = "http://localhost:5173/dashboard";
+          navigate("/adminDashboard");
         } else {
-          window.location.href = "http://localhost:5173/adminDashboard";
+          navigate("/dashboard");
         }
       } else {
         console.log("Login failed:", data.message);
@@ -44,14 +52,12 @@ const LoginButton = () => {
   };
 
   return (
-    <div className="flex justify-center pb-5">
-      <GoogleLogin
-        onSuccess={handleGoogleSuccess}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-      />
-    </div>
+    <GoogleLogin
+      onSuccess={handleGoogleSuccess}
+      onError={() => {
+        console.log("Login Failed");
+      }}
+    />
   );
 };
 
