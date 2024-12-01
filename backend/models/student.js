@@ -15,9 +15,10 @@ const getAllStudents = async() => {
 
 const getStudentByID = async(id) => {
     try {
+        // console.log(id);
         const student = await prisma.student.findUnique({
             where: {
-                roll_no: Number(id)
+                roll_no: parseInt(id)
             }
         });
         return student;

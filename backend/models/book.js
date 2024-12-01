@@ -44,7 +44,7 @@ const getBookByID = async(id) => {
     try {
         const bookByID = await prisma.book.findUnique({
             where: {
-                id: ids
+                id: id
             }
         });
         return bookByID;

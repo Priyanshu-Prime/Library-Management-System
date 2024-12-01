@@ -12,8 +12,8 @@ export default function SearchBar({onSearch}) {
         onSearch(searchTerm);
     };
   return (
-      <div className="xl:w-96 flex p-5">
-          <div className="relative flex w-full flex-wrap items-stretch self-center">
+      <div className="mb-3 xl:w-96">
+          <div className="relative mb-4 flex w-full flex-wrap items-stretch">
               <input
                   type="search"
                   value={searchTerm}

@@ -19,7 +19,8 @@ const getAllRecords = async() => {
                     }
                 },
                 date_of_issue: true,
-                date_of_return: true
+                date_of_return: true,
+                returned: true,
             },
         });
 
@@ -30,6 +31,7 @@ const getAllRecords = async() => {
             name: record.student.name, 
             date_of_issue: record.date_of_issue, 
             date_of_return: record.date_of_return,
+            status: record.returned ? "Returned" : "Not Returned",
         }))
 
         return formattedRecords;
@@ -57,28 +59,36 @@ const getRecordByBookID = async(id) => {
     }
 };
 
-const getRecordByStudentID = async(id) => {
+const getRecordByStudentID = async (id) => {
     try {
         const record = await prisma.issues.findMany({
             where: {
-                student_id: Number(id)
-            }
+                student_id: Number(id),
+            },
+            include: {
+                book: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
         });
         return record;
-    }
-    catch(err) {
+    } catch (err) {
         console.log("Error in getRecordByStudentID in issuing.js");
         console.log(err.stack);
         throw err;
     }
 };
 
+
 const getDefaulters = async() => {
     try {
         const defaulters = await prisma.issues.findMany({
             where: {
                 date_of_return: {
-                    lt: new Date()
+                    lt: new Date(),
+                    returned: false,
                 }
             }
         });
@@ -110,4 +120,113 @@ const deleteRecord = async(id) => {
     }
 }
 
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord};
+const filterIssues = async(searchText) => {
+    try {
+        const filteredRecords = await prisma.issues.findMany({
+            where: {
+                OR: [
+                    {
+                        book_id: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        student_id: searchText,
+                        mode: 'insensitve',
+                    },
+                    {
+                        date_of_issue: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        }
+                    },
+                    {
+                        date_of_return: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        }
+                    },
+                ],
+            },
+        });
+        return filteredRecords;
+    } 
+    catch (error) {
+        console.log("Error in filtering issues in issuing.js");
+        console.log(error.stack);   
+        throw(error);   
+    }
+};
+
+const returnIssues = async(bookid) =>
+{
+    try
+    {
+        await prisma.issues.updateMany({
+            where:
+            {
+                book_id: bookid,
+            },
+            data:
+            {
+                returned: true,
+            }
+        });
+        console.log(`Book ID: ${bookid} has been returned`);
+    }
+    catch(err)
+    {
+        console.log("Error in marking the book as returned");
+        console.log(err.stack);
+    }
+}
+
+const unreturnedRecords = async() =>
+{
+    try 
+    {
+        const records = await prisma.issues.findMany({
+            where:
+            {
+                returned: false,
+            },
+            select: {
+                book: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                },
+                student: {
+                    select: {
+                        roll_no: true,
+                        name: true,
+                    }
+                },
+                date_of_issue: true,
+                date_of_return: true,
+                returned: true,
+            },
+        });
+
+        const formattedRecords = records.map(record => ({
+            book_id: record.book.id,
+            title: record.book.name,
+            student_id: record.student.roll_no,
+            name: record.student.name, 
+            date_of_issue: record.date_of_issue, 
+            date_of_return: record.date_of_return,
+            status: record.returned ? "Returned" : "Not Returned",
+        }))
+
+        return formattedRecords;
+    }
+    catch(err)
+    {
+        console.log("Error in fetching unreturned records");
+        console.log(err.stack);
+    }
+}
+ 
+module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords};
