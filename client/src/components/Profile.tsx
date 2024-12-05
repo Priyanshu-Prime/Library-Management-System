@@ -1,5 +1,5 @@
-import React from "react";
-import img from "../assets/Profile.png";
+import React from 'react';
+import img from '../assets/Profile.png';
 
 interface ProfileProps {
   height: string;
@@ -8,8 +8,8 @@ interface ProfileProps {
 
 const Profile = ({ height, width }: ProfileProps) => {
   return (
-    <div className="flex justify-center pt-20">
-      <img src={img} className="content-center h-3/4" />
+    <div className='flex justify-center pt-20'>
+      <img src={img} className='content-center h-3/4' />
     </div>
   );
 };

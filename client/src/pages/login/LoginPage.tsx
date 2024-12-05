@@ -14,16 +14,24 @@ const LoginPage = () => {
                 console.log('Login Failed');
               }}
             /> */}
-          <div className='h-1/4 w-full text-center place-content-center font-light text-4xl'>LOGIN</div>
+          <div className='h-1/4 w-full text-center place-content-center font-light text-4xl'>
+            LOGIN
+          </div>
           <div className='h-2/3 w-full flex flex-col justify-center'>
-            <input className='h-12 w-2/3 self-center rounded-3xl placeholder:text-center' placeholder='Email' />
-            <input className='h-12 w-2/3 self-center mt-8 rounded-3xl placeholder:text-center' placeholder='Password' />
+            <input
+              className='h-12 w-2/3 self-center rounded-3xl placeholder:text-center'
+              placeholder='Email'
+            />
+            <input
+              className='h-12 w-2/3 self-center mt-8 rounded-3xl placeholder:text-center'
+              placeholder='Password'
+            />
           </div>
           <LoginButton />
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

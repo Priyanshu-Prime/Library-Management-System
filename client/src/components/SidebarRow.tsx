@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 interface SidebarRowProps {
   redirectUrl: string;
@@ -11,10 +11,10 @@ const SidebarRow = ({ redirectUrl, row_content }: SidebarRowProps) => {
   };
 
   return (
-    <Link to={"/" + redirectUrl}>
+    <Link to={'/' + redirectUrl}>
       <button
         onClick={handleClick}
-        className="w-full h-14 bg-[#D9D9D926] text-center content-center text-l font-normal"
+        className='w-full h-14 bg-[#D9D9D926] text-center content-center text-l font-normal'
       >
         {row_content}
       </button>

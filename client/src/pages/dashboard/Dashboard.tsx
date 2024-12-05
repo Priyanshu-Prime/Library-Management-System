@@ -1,13 +1,12 @@
-import Sidebar from '../../components/Sidebar'
+import Sidebar from '../../components/Sidebar';
 
 const Dashboard = () => {
   return (
     <div className='h-screen w-screen flex'>
-    <Sidebar />
-    <div className='h-full w-4/5 bg-[#A1EEC5] flex justify-center'>
+      <Sidebar />
+      <div className='h-full w-4/5 bg-[#A1EEC5] flex justify-center'></div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;

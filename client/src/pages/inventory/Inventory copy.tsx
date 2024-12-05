@@ -1,8 +1,8 @@
-import Sidebar from "../../components/Sidebar";
-import InventoryTopBar from "../../components/InventoryTopBar";
-import { useEffect } from "react";
-import { useState } from "react";
-import axios from "axios";
+import Sidebar from '../../components/Sidebar';
+import InventoryTopBar from '../../components/InventoryTopBar';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
 
 const Inventory = () => {
   interface Books {
@@ -32,16 +32,16 @@ const Inventory = () => {
   }, []);
 
   return (
-    <div className="h-screen w-screen flex">
+    <div className='h-screen w-screen flex'>
       <Sidebar />
-      <div className="h-full w-4/5 bg-[#A1EEC5] flex flex-col">
+      <div className='h-full w-4/5 bg-[#A1EEC5] flex flex-col'>
         <InventoryTopBar />
         {books.length > 0 ? (
-          <div className="w-full">
+          <div className='w-full'>
             {books.map((book) => (
-              <div key={book.id} className="p-4 mb-2 rounded shadow">
-                <h3 className="text-lg font-bold">{book.name}</h3>
-                <p className="text-gray-700">Author: {book.author}</p>
+              <div key={book.id} className='p-4 mb-2 rounded shadow'>
+                <h3 className='text-lg font-bold'>{book.name}</h3>
+                <p className='text-gray-700'>Author: {book.author}</p>
               </div>
             ))}
           </div>
