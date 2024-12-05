@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "../../components/Sidebar";
 import InventoryTopBar from "../../components/InventoryTopBar";
 import { useEffect } from "react";
@@ -10,7 +9,15 @@ import moment from 'moment'
 const PORT = import.meta.env.VITE_SERVER_PORT;
 
 const BooksIssued = () => {
-    const [books, setBooks] = useState([]) 
+    interface Book {
+        book_id: number; 
+        title: string;
+        student_id: number;
+        name: string;
+        date_of_issue: string;
+    }
+
+    const [books, setBooks] = useState<Book[]>([]) 
 
     const fetchBooks = async () => {
         const url = `http://localhost:${PORT}/api/issues/unreturned`
@@ -24,7 +31,7 @@ const BooksIssued = () => {
         }
     }
 
-    const unissueBook = async(book_id) => {
+    const unissueBook = async(book_id: number) => {
         try {
             const response = await axios.patch(`http://localhost:${PORT}/api/issues/return/${book_id}`)
             console.log(response.data)

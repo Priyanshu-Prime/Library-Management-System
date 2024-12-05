@@ -1,10 +1,6 @@
-import React from 'react'
 import Sidebar from '../../components/Sidebar'
-import ReadingImg from '../../components/ReadingImg'
 
-
-
-const Dashboard = () => {
+const AdminDashboard = () => {
   return (
     <div className='h-screen w-screen flex'>
     <Sidebar />
@@ -15,4 +11,4 @@ const Dashboard = () => {
   )
 }
 
-export default Dashboard
+export default AdminDashboard

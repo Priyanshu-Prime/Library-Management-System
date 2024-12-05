@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "../../components/Sidebar";
 import InventoryTopBar from "../../components/InventoryTopBar";
 import BookCard from "../../components/BookCard";
@@ -9,9 +8,17 @@ import axios from "axios";
 const PORT = import.meta.env.VITE_SERVER_PORT;
 
 const Inventory = () => {
-  const [books, setBooks] = useState([]);
+  interface Books {
+    id: string;
+    name: string;
+    subject: string;
+    author: string;
+    publication: string;
+    image: string;
+  }
+  const [books, setBooks] = useState<Books[]>([]);
 
-  const fetchBooks = async (searchParams) => {
+  const fetchBooks = async (searchParams?: string) => {
     let url;
     if (searchParams) {
       url = `http://localhost:${PORT}/api/books/filter/${searchParams}`;
@@ -33,7 +40,7 @@ const Inventory = () => {
     fetchBooks();
   }, []);
 
-  const handleSearch = (searchTerm) => {
+  const handleSearch = (searchTerm?: string) => {
     fetchBooks(searchTerm);
   };
 

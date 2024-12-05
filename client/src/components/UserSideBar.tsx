@@ -1,10 +1,9 @@
-import React from 'react'
 import SidebarRow from './SidebarRow'
 import Profile from './Profile'
 import { useEffect, useState } from 'react'
 
 const Sidebar = () => {
-  const [userName, setUserName] = useState('');
+  const [userName, setUserName] = useState<string>('');
   useEffect(() => {
     const name = localStorage.getItem('userName');
     if (name)
@@ -18,7 +17,6 @@ const Sidebar = () => {
         </div>
         <div className='h-3/5 w-full flex flex-col pt-20'>
             <SidebarRow redirectUrl='inventory' row_content='Book Inventory' />
-            <SidebarRow redirectUrl='issued' row_content='Books Issued' />
             <SidebarRow redirectUrl='requests' row_content='Book Requests' />
             <SidebarRow redirectUrl='profile' row_content='Account Info' />
         </div>
