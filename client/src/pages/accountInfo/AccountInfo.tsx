@@ -1,4 +1,5 @@
-import Sidebar from '../../components/Sidebar';
+// import Sidebar from '../../components/Sidebar';
+import Sidebar from '@/components/UserSideBar';
 import InventoryTopBar from '../../components/InventoryTopBar';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -70,9 +71,8 @@ const AccountInfo = () => {
   }, [uid]);
 
   return (
-    <div className='h-screen w-screen flex'>
-      <Sidebar />
-      <div className='h-full w-4/5 bg-[#A1EEC5] flex flex-col overflow-y-auto'>
+    <Sidebar>
+      <div className='h-full w-full bg-[#A1EEC5] flex flex-col overflow-y-auto'>
         <InventoryTopBar />
         {students.length > 0 ? (
           <div className='h-5/6 w-full'>
@@ -122,7 +122,7 @@ const AccountInfo = () => {
           <p>No issues available.</p>
         )}
       </div>
-    </div>
+    </Sidebar>
   );
 };
 

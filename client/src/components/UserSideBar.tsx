@@ -1,27 +1,20 @@
-import SidebarRow from './SidebarRow';
-import Profile from './Profile';
-import { useEffect, useState } from 'react';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+import { AppSidebar } from '@/components/AppSidebar';
+import { ReactNode } from 'react';
 
-const Sidebar = () => {
-  const [userName, setUserName] = useState<string>('');
-  useEffect(() => {
-    const name = localStorage.getItem('userName');
-    if (name) setUserName(name);
-  }, []);
+interface SidebarProps {
+  children: ReactNode;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ children }) => {
   return (
-    <div className='h-full w-1/5 bg-[#64CF7BDE] sticky top-0'>
-      <div className='h-2/5 w-full flex flex-col justify-center'>
-        <Profile height='50px' width='50px' />
-        <div className='h-1/2 self-center content-center text-2xl font-normal'>
-          Welcome {userName}
-        </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <div className="h-screen w-full flex">
+        <SidebarTrigger />
+        {children}
       </div>
-      <div className='h-3/5 w-full flex flex-col pt-20'>
-        <SidebarRow redirectUrl='inventory' row_content='Book Inventory' />
-        <SidebarRow redirectUrl='requests' row_content='Book Requests' />
-        <SidebarRow redirectUrl='profile' row_content='Account Info' />
-      </div>
-    </div>
+    </SidebarProvider>
   );
 };
 
