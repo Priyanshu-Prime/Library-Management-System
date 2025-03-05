@@ -15,7 +15,7 @@ const googleLogin = (req, res) =>
     if (emailDomain != ALLOWED_DOMAIN)
     {
         console.log("Email not accepted login failed");
-        return res.status(403).json({message: "IIITT email not found!"});
+        return res.status(403).json({ message: "IIITT email not found!" });
     }
     const token = jwt.sign({email}, JWT_SECRET, {expiresIn: '1h'});
 

@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "test": "vitest"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +26,9 @@
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.13.0",
     "router": "^2.0.0",
-    "routes": "^2.1.0"
+    "routes": "^2.1.0",
+    "supertest": "^7.0.0",
+    "vitest": "^3.0.7"
   },
   "devDependencies": {
     "prisma": "^5.22.0"
