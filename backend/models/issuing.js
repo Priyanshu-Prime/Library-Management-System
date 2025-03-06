@@ -132,7 +132,7 @@ const filterIssues = async(searchText) => {
                         },
                     },
                     {
-                        student_id: searchText,
+                        student_id: parseInt(searchText),
                         mode: 'insensitve',
                     },
                     {

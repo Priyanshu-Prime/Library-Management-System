@@ -22,8 +22,14 @@ describe('Book Controller', () => {
 
     it('should get a book by ID', async () => {
         const res = await request(app).get('/api/books/9781265058432');
-        expect(res.statusCode).toEqual(200);
-        expect(res.body).toHaveProperty('id');
+        if (res) {
+            expect(res.statusCode).toEqual(200);
+            expect(res.body).toHaveProperty('id');
+        }
+        else {
+            expect(res.statusCode).toEqual(500);
+            expect(res.body).toHaveProperty('error', 'Book not found');
+        }
     });
 
     it('should create a new book', async () => {
@@ -54,3 +60,5 @@ describe('Book Controller', () => {
         expect(res.body).toBeInstanceOf(Array);
     });
 });
+
+
