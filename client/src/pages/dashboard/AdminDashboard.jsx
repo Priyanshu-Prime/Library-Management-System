@@ -8,7 +8,7 @@ const AdminDashboard = () => {
   return (
     <div className='h-screen w-screen flex'>
     <Sidebar />
-    <div className='h-full w-4/5 bg-[#A1EEC5] flex justify-center'>
+    <div className='h-full w-4/5 bg-[#F0F7F4] flex justify-center'>
       {/* <ReadingImg /> */}
     </div>
   </div>

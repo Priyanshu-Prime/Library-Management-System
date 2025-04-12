@@ -1,0 +1,99 @@
+@startuml seqDiagram
+actor User
+actor Admin
+
+participant "Client" as Client
+participant "Server" as Server
+participant "AuthController" as AuthController
+participant "BookController" as BookController
+participant "StudentController" as StudentController
+participant "IssuingController" as IssuingController
+participant "EmailController" as EmailController
+participant "Database" as Database
+
+User -> Client: Login
+Client -> AuthController: POST /auth/google-login
+AuthController -> Database: Verify User
+AuthController -> Client: Return Token
+
+User -> Client: View Books
+Client -> BookController: GET /api/books
+BookController -> Database: getAllBooks()
+Database -> BookController: Return Books
+BookController -> Client: Return Books
+
+User -> Client: View Book Details
+Client -> BookController: GET /api/books/:id
+BookController -> Database: getBookByID(id)
+Database -> BookController: Return Book Details
+BookController -> Client: Return Book Details
+
+Admin -> Client: Add Book
+Client -> BookController: POST /api/books
+BookController -> Database: addBook()
+Database -> BookController: Return New Book
+BookController -> Client: Return New Book
+
+Admin -> Client: Update Book
+Client -> BookController: PATCH /api/books/:oldid
+BookController -> Database: updateBook()
+Database -> BookController: Return Updated Book
+BookController -> Client: Return Updated Book
+
+Admin -> Client: Delete Book
+Client -> BookController: DELETE /api/books/:id
+BookController -> Database: deleteBook()
+Database -> BookController: Return Deletion Status
+BookController -> Client: Return Deletion Status
+
+User -> Client: View Student Details
+Client -> StudentController: GET /api/students/:id
+StudentController -> Database: getStudentByID(id)
+Database -> StudentController: Return Student Details
+StudentController -> Client: Return Student Details
+
+Admin -> Client: Add Student
+Client -> StudentController: POST /api/students
+StudentController -> Database: addStudent()
+Database -> StudentController: Return New Student
+StudentController -> Client: Return New Student
+
+Admin -> Client: Update Student
+Client -> StudentController: PATCH /api/students/:oldid
+StudentController -> Database: updateStudent()
+Database -> StudentController: Return Updated Student
+StudentController -> Client: Return Updated Student
+
+Admin -> Client: Delete Student
+Client -> StudentController: DELETE /api/students/:id
+StudentController -> Database: deleteStudent()
+Database -> StudentController: Return Deletion Status
+StudentController -> Client: Return Deletion Status
+
+User -> Client: View Issued Books
+Client -> IssuingController: GET /api/issues
+IssuingController -> Database: getAllRecords()
+Database -> IssuingController: Return Records
+IssuingController -> Client: Return Records
+
+Admin -> Client: Mark Book as Returned
+Client -> IssuingController: PATCH /api/issues/return/:bookid
+IssuingController -> Database: returnIssues(bookid)
+Database -> IssuingController: Return Status
+IssuingController -> Client: Return Status
+
+Admin -> Client: Delete Issued Record
+Client -> IssuingController: DELETE /api/issues/delete/:id
+IssuingController -> Database: deleteRecord(id)
+Database -> IssuingController: Return Deletion Status
+IssuingController -> Client: Return Deletion Status
+
+Admin -> Client: Send Email Reminders
+Client -> EmailController: Trigger sendEmail()
+EmailController -> Database: getOverdueBooks()
+Database -> EmailController: Return Overdue Books
+EmailController -> EmailService: Send Emails
+EmailService -> EmailController: Return Status
+EmailController -> Client: Return Status
+
+@enduml

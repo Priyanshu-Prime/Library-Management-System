@@ -56,10 +56,10 @@ const AccountInfo = () => {
     return (
         <div className="h-screen w-screen flex">
             <Sidebar />
-            <div className="h-full w-4/5 bg-[#A1EEC5] flex flex-col overflow-y-auto">
+            <div className="h-full w-4/5 bg-[#F0F7F4] flex flex-col overflow-y-auto">
             <InventoryTopBar />
             {Object.keys(students).length > 0 ? (
-                    <div className="h-5/6 w-full">
+                    <div className="h-2/6 w-full">
                         {/* {students.map((student) => (
                             <div key={student.id} className="p-4 rounded shadow">
                                 <h3 className="text-lg font-bold">{student.name}</h3>
@@ -79,7 +79,7 @@ const AccountInfo = () => {
                 {issues.length > 0 ? (
                     <div className="h-5/6 w-full">
                         {issues.map((issue) => (
-                            <div key={issue.id} className="p-4 flex rounded shadow justify-between items-center">
+                            <div key={issue.id} className="p-4 m-1 flex rounded justify-between items-center hover:shadow transition-shadow duration-300 ease-in-out">
                                 <div className="w-1/2 text-center"> 
                                     <h3 className="text-md font-bold">{issue.book.name}</h3>
                                 </div>

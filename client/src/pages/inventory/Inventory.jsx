@@ -40,10 +40,10 @@ const Inventory = () => {
   return (
     <div className="h-screen w-screen flex">
       <Sidebar />
-      <div className="h-full w-4/5 bg-[#A1EEC5] flex flex-col overflow-y-auto">
+      <div className="h-full w-4/5 bg-[#F0F7F4] flex flex-col overflow-y-auto">
         <InventoryTopBar onSearch={handleSearch} />
         {books.length > 0 ? (
-          <div className="w-full p-10 flex flex-wrap justify-between">
+          <div className="w-full px-10 py-8 flex flex-wrap justify-between">
             {books.map((book) => (
               <BookCard
                 name={book.name}

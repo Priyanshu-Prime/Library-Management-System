@@ -1,0 +1,47 @@
+@startuml usecase
+actor User
+actor Admin
+
+rectangle "Library Management System" {
+    (Login) -- User
+    (View Books) -- User
+    (View Book Details) -- User
+    (View Students) -- User
+    (View Student Details) -- User
+    (View Issued Books) -- User
+    (View Issued Book Details) -- User
+    (View Issued Books by Student) -- User
+
+    (Add Book) -- Admin
+    (Update Book) -- Admin
+    (Delete Book) -- Admin
+    (Add Student) -- Admin
+    (Update Student) -- Admin
+    (Delete Student) -- Admin
+    (Mark Book as Returned) -- Admin
+    (Delete Issued Record) -- Admin
+    (Send Email Reminders) -- Admin
+}
+
+(Login) .> (Verify User) : <<include>>
+(View Books) .> (getAllBooks) : <<include>>
+(View Book Details) .> (getBookByID) : <<include>>
+(View Students) .> (getAllStudents) : <<include>>
+(View Student Details) .> (getStudentByID) : <<include>>
+(View Issued Books) .> (getAllRecords) : <<include>>
+(View Issued Book Details) .> (getRecordByBookID) : <<include>>
+(View Issued Books by Student) .> (getRecordByStudentID) : <<include>>
+
+(Add Book) .> (addBook) : <<include>>
+(Update Book) .> (updateBook) : <<include>>
+(Delete Book) .> (deleteBook) : <<include>>
+(Add Student) .> (addStudent) : <<include>>
+(Update Student) .> (updateStudent) : <<include>>
+(Delete Student) .> (deleteStudent) : <<include>>
+(Mark Book as Returned) .> (returnIssues) : <<include>>
+(Delete Issued Record) .> (deleteRecord) : <<include>>
+
+(Send Email Reminders) .> (getOverdueBooks) : <<include>>
+(Send Email Reminders) .> (sendEmails) : <<include>>
+
+@enduml

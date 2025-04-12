@@ -44,7 +44,7 @@ const BooksIssued = () => {
     return (
         <div className="h-full w-full flex">
             <Sidebar />
-            <div className="h-full w-4/5 bg-[#A1EEC5] flex flex-col overflow-y-auto">
+            <div className="h-full w-4/5 bg-[#F0F7F4] flex flex-col overflow-y-auto">
             <InventoryTopBar />
             {books.length > 0 ? (
                     <div className="h-5/6 w-full">

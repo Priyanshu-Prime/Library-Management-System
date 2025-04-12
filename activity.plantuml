@@ -1,0 +1,62 @@
+@startuml
+|User|
+start
+:Login;
+:View Books;
+:View Book Details;
+:View Student Details;
+:View Issued Books;
+:View Issued Book Details;
+stop
+
+|Admin|
+start
+:Login;
+:View Books;
+:View Book Details;
+:View Students;
+:View Student Details;
+:View Issued Books;
+:View Issued Book Details;
+:View Issued Books by Student;
+:Add Book;
+:Update Book;
+:Delete Book;
+:Mark Book as Returned;
+:Delete Issued Record;
+:Send Email Reminders;
+stop
+
+|System|
+start
+:Verify User;
+:Return Token;
+:Fetch Books;
+:Return Books;
+:Fetch Book Details;
+:Return Book Details;
+:Fetch Students;
+:Return Students;
+:Fetch Student Details;
+:Return Student Details;
+:Fetch Issued Books;
+:Return Issued Books;
+:Fetch Issued Book Details;
+:Return Issued Book Details;
+:Fetch Issued Books by Student;
+:Return Issued Books by Student;
+:Add Book to Database;
+:Return New Book;
+:Update Book in Database;
+:Return Updated Book;
+:Delete Book from Database;
+:Return Deletion Status;
+:Mark Book as Returned in Database;
+:Return Status;
+:Delete Issued Record from Database;
+:Return Deletion Status;
+:Fetch Overdue Books;
+:Send Emails;
+:Return Email Status;
+stop
+@enduml
