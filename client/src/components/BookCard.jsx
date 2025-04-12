@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom'
 const BookCard = ({ name, author, image, available }) => {
   const navigate = useNavigate();
   const handleBookClick = () => {
-    navigate('/requests', { state: { name, author, image, available } });
+    navigate('/requestbook', { state: { name, author, image, available } });
   }
   return (
-    <div onClick={handleBookClick} className='w-48 h-64 ml-4 mt-4 rounded-lg bg-[#B3BFB8] flex flex-col items-center justify-center 
+    <div onClick={handleBookClick} className='w-48 mx-4 h-64 ml-4 my-4 rounded-lg bg-[#B3BFB8] flex flex-col items-center justify-center 
                     transform transition-transform duration-300 hover:scale-105 overflow-hidden'>
       <div className='w-full h-4/6 flex justify-center items-center'>
         <img src={image} className='w-4/5 h-4/5 object-contain'></img>

@@ -43,7 +43,7 @@ const Inventory = () => {
       <div className="h-full w-4/5 bg-[#F0F7F4] flex flex-col overflow-y-auto">
         <InventoryTopBar onSearch={handleSearch} />
         {books.length > 0 ? (
-          <div className="w-full px-10 py-8 flex flex-wrap justify-between">
+          <div className="w-full px-10 py-8 flex flex-wrap ">
             {books.map((book) => (
               <BookCard
                 name={book.name}

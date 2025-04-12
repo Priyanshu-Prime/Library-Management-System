@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "../../components/Sidebar";
 import InventoryTopBar from "../../components/InventoryTopBar";
 import { useEffect } from "react";
@@ -67,7 +66,7 @@ const AccountInfo = () => {
                                 <p className="text-gray-700">Student Email: {student.email}</p>
                             </div>
                         ))} */}
-                        <div key={students.roll_no} className="p-4 rounded justify-between items-center">
+                        <div key={students.roll_no} className="p-4 rounded justify-between items-center mt-4 ms-10">
                             <h3 className="text-lg font-bold ">{students.name}</h3>
                             <p className="text-stone-950">Student ID: {students.roll_no}</p>
                             <p className="text-stone-950">Student Email: {students.email}</p>
@@ -83,7 +82,7 @@ const AccountInfo = () => {
                                 <div className="w-1/2 text-center"> 
                                     <h3 className="text-md font-bold">{issue.book.name}</h3>
                                 </div>
-                                <div className="w-1/6 text-center"> 
+                                <div className="w-2/6 text-center"> 
                                     <p className=" text-md text-gray-700">Date of Issue: {moment(issue.date_of_issue).format("DD-MM-YYYY")}</p>
                                     <p className="text-md text-gray-700">Date of Return: {moment(issue.date_of_return).format("DD-MM-YYYY")}</p>
                                 </div>

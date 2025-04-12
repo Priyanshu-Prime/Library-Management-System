@@ -19,7 +19,7 @@ const BookDetails = () => {
       </div>
 
     {available > 0 && (
-      <div className='w-full flex justify-center mt-6'>
+      <div className='w-full flex justify-center mb-10'>
         {/* Add backend functionality to this button */}
         <button className='px-6 py-2 bg-[#2274A5] text-white rounded-lg shadow-md hover:bg-blue-600 transition duration-300'>
           Request Book

@@ -1,8 +1,7 @@
-import React from 'react'
 import Sidebar from '../../components/Sidebar'
 import BookDetails from '../../components/BookDetails'
 
-const BookRequests = () => {
+const BookInfo = () => {
     return (
         <div className='h-screen w-screen flex'>
             <Sidebar />
@@ -13,4 +12,4 @@ const BookRequests = () => {
     )
 }
   
-export default BookRequests
+export default BookInfo

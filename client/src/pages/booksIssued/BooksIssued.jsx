@@ -1,4 +1,3 @@
-import React from "react";
 import Sidebar from "../../components/Sidebar";
 import InventoryTopBar from "../../components/InventoryTopBar";
 import { useEffect } from "react";

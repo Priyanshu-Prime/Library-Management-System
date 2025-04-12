@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 
 export default function SearchBar({onSearch}) {
     const [searchTerm, setSearchTerm] = useState('');
@@ -22,8 +22,8 @@ export default function SearchBar({onSearch}) {
                   placeholder="Search"
                   aria-label="Search"
                   aria-describedby="button-addon2"
-                  onKeyDown={(e) => {
-                            handleSearch()
+                  onKeyDown={() => {
+                        handleSearch()
                   }} />
 
               {/* <!--Search icon--> */}

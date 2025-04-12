@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link, redirect } from 'react-router-dom'
 
 const SidebarRow = (props) => {
