@@ -12,7 +12,6 @@ Frontend:
 2. Setup API calls to fetch book and user data.
 3. Created an inventory page preview with book cards (including cover images).
 
-
 Note:
 > Add a .env file in client directory add the following entry {VITE_SERVER_PORT=____}.
 > Add an image column in the books table and insert cdn images for each book entry. (refer book_schema)
