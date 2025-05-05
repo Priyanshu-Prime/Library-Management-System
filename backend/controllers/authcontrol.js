@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-
+const dotenv = require('dotenv');
+dotenv.config();
 const ALLOWED_DOMAIN = 'iiitt.ac.in';
 const JWT_SECRET=process.env.JWT_SECRET;
 
