@@ -6,13 +6,13 @@ import axios from "axios";
 import returnImg from "../../assets/go-back-arrow.png";
 import moment from "moment";
 
-const PORT = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_ADDRESS;
 
 const BooksIssued = () => {
   const [books, setBooks] = useState([]);
 
   const fetchBooks = async () => {
-    const url = `http://localhost:${PORT}/api/issues/unreturned`;
+    const url = `http://${PORT}/api/issues/unreturned`;
 
     try {
       const response = await axios.get(url);
@@ -32,7 +32,7 @@ const BooksIssued = () => {
 
     try {
       const response = await axios.patch(
-        `http://localhost:${PORT}/api/issues/return/${book_id}`
+        `http://${PORT}/api/issues/return/${book_id}`
       );
       console.log(response.data);
 

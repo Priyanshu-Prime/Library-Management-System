@@ -1,7 +1,7 @@
 // import { GoogleLogin } from "@react-oauth/google";
 // import { jwtDecode } from "jwt-decode";
 
-// const PORT = import.meta.env.VITE_SERVER_PORT;
+// const PORT = import.meta.env.VITE_ADDRESS;
 
 // const LoginButton = () => {
 //   const handleGoogleSuccess = async (credentialResponse) => {
@@ -10,7 +10,7 @@
 
 //     try {
 //       const response = await fetch(
-//         `http://localhost:${PORT}/api/auth/google-login`,
+//         `http://${PORT}/api/auth/google-login`,
 //         {
 //           method: "POST",
 //           headers: {
@@ -55,7 +55,7 @@
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
-const PORT = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_ADDRESS;
 
 const LoginButton = () => {
   const handleGoogleSuccess = async (credentialResponse) => {
@@ -64,7 +64,7 @@ const LoginButton = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:${PORT}/api/auth/google-login`,
+        `http://${PORT}/api/auth/google-login`,
         {
           method: "POST",
           headers: {

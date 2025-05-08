@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-const PORT = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_ADDRESS;
 
 const Inventory = () => {
   const [books, setBooks] = useState([]);
@@ -14,11 +14,13 @@ const Inventory = () => {
   const fetchBooks = async (searchParams) => {
     let url;
     if (searchParams) {
-      url = `http://100.79.247.2:3001/api/books/filter/${searchParams}`;
+      url = `http://${PORT}/api/books/filter/${searchParams}`;
     } else {
       console.log("No query passed");
-      url = `http://100.79.247.2:3001/api/books`;
+      url = `http://${PORT}/api/books`;
     }
+
+    console.log(url)
 
     try {
       const response = await axios.get(url);

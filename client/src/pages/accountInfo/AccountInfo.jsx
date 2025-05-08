@@ -5,7 +5,7 @@ import { useState } from "react";
 import axios from 'axios';
 import moment from 'moment'
 
-const PORT = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_ADDRESS;
 
 const AccountInfo = () => {
     
@@ -19,7 +19,7 @@ const AccountInfo = () => {
     const [issues, setIssues] = useState([]) 
     // console.log(uid);
     const fetchStudents = async () => {
-        const url = `http://localhost:${PORT}/api/students/${uid}`
+        const url = `http://${PORT}/api/students/${uid}`
 
         try {
             const response = await axios.get(url);
@@ -32,7 +32,7 @@ const AccountInfo = () => {
     }
 
     const fetchIssues = async () => {
-        const url = `http://localhost:${PORT}/api/issues/student/${uid}`;
+        const url = `http://${PORT}/api/issues/student/${uid}`;
 
         try {
             const response = await axios.get(url)

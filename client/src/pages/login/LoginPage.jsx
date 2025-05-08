@@ -4,7 +4,7 @@ import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import LoginButton from "../../components/LoginButton";
 
-const PORT = import.meta.env.VITE_SERVER_PORT;
+const PORT = import.meta.env.VITE_ADDRESS;
 
 const LoginPage = () => {
   return (
