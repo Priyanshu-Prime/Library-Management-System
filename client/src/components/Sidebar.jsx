@@ -31,7 +31,7 @@ import Profile from "./Profile";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 
-const Sidebar = (isAdmin) => {
+const Sidebar = ({isAdmin}) => {
   const [userName, setUserName] = useState("");
   const location = useLocation(); // Get the current route
 
@@ -60,11 +60,11 @@ const Sidebar = (isAdmin) => {
           row_content="Books Issued"
           isActive={location.pathname === "/issued"}
         />
-//         <SidebarRow
-//           redirectUrl="requests"
-//           row_content="Book Requests"
-//           isActive={location.pathname === "/requests"}
-//         />
+{/* //         <SidebarRow
+          redirectUrl="requests"
+          row_content="Book Requests"
+          isActive={location.pathname === "/requests"}
+        /> */}
           
           {!isAdmin && <SidebarRow
           redirectUrl="profile"
