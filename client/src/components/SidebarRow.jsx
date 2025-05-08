@@ -6,7 +6,7 @@ const SidebarRow = ({ redirectUrl, row_content, isActive }) => {
 
   return (
     <div
-      className={`py-4 px-6 cursor-pointer ${
+      className={`py-4 px-6 cursor-pointer flex justify-center ${
         isActive ? "bg-[#3B90C2] text-black" : "bg-[#2274A5] text-white"
       } hover:bg-[#3B90C2] hover:text-black`}
       onClick={() => navigate(`/${redirectUrl}`)}

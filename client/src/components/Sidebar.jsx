@@ -49,7 +49,7 @@ const Sidebar = ({isAdmin}) => {
       </div>
         
 
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-col flex-grow mt-20">
         <SidebarRow
           redirectUrl="inventory"
           row_content="Book Inventory"
