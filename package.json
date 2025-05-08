@@ -1,9 +1,9 @@
 {
-  "dependencies": {
-    "concurrently": "^9.1.2"
-  },
   "scripts": {
     "start": "concurrently \"npm run start --prefix backend\" \"npm run dev --prefix client\"",
     "test": "npm run test --prefix backend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
   }
 }
