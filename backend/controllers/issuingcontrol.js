@@ -55,6 +55,7 @@ const recordByStudentId = async (req, res) => {
 const defaultersList = async (req, res) => {
     try {
         const record = await getDefaulters();
+        console.log(record)
         res.status(200).json(record);
     }
     catch (err) {

@@ -6,6 +6,7 @@ import Inventory from './pages/inventory/Inventory'
 import BooksIssued from './pages/booksIssued/BooksIssued'
 import BookInfo from './pages/requests/BookInfo'
 import AccountInfo from './pages/accountInfo/AccountInfo'
+import Defaulters from './pages/booksIssued/Defaulters'
 
 const App = () => {
 
@@ -20,6 +21,7 @@ const App = () => {
         <Route path="/issued" element={<BooksIssued />} />
         <Route path="/requests" element={<BookInfo />} />
         <Route path="/profile" element={<AccountInfo />} />
+        <Route path="/defaulters" element={<Defaulters />} />
         <Route path="*" element={< LoginPage />} />
       </Routes>
     </BrowserRouter>

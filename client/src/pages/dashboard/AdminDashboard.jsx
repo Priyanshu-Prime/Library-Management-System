@@ -31,7 +31,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="h-screen w-screen flex">
-      <Sidebar />
+      <Sidebar isAdmin={true} />
       <div className="h-full w-4/5 bg-[#F0F7F4] flex flex-col p-8">
         <h1 className="text-3xl font-bold text-[#2274A5] mb-6">
           Currently Issued Books
@@ -67,6 +67,7 @@ const AdminDashboard = () => {
           )}
         </div>
       </div>
+
     </div>
   );
 };

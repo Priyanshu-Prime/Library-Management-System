@@ -88,9 +88,16 @@ const getDefaulters = async() => {
             where: {
                 date_of_return: {
                     lt: new Date(),
-                    returned: false,
-                }
-            }
+                },
+                returned: false,
+            },
+            include: {
+                student: {
+                    select: {
+                        name: true,
+                    },
+                },
+            },
         });
         return defaulters;
     }
