@@ -1,17 +1,19 @@
-import { Link, redirect } from 'react-router-dom'
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
-const SidebarRow = (props) => {
-  const handleClick = () => {
-    console.log(props.redirectUrl)
-  }
+const SidebarRow = ({ redirectUrl, row_content, isActive }) => {
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <Link to={'/' + props.redirectUrl}>
-        <button onClick={ handleClick } className='w-full hover:text-black text-white hover:bg-[#3B90C2] transition-text duration-150 ease-in-out h-14 bg-[#2274A5] text-center content-center text-l font-normal'>{props.row_content}</button>
-      </Link>
+    <div
+      className={`py-4 px-6 cursor-pointer ${
+        isActive ? "bg-[#3B90C2] text-black" : "bg-[#2274A5] text-white"
+      } hover:bg-[#3B90C2] hover:text-black`}
+      onClick={() => navigate(`/${redirectUrl}`)}
+    >
+      {row_content}
     </div>
-  )
-}
+  );
+};
 
-export default SidebarRow
+export default SidebarRow;
