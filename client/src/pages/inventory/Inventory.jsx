@@ -14,10 +14,10 @@ const Inventory = () => {
   const fetchBooks = async (searchParams) => {
     let url;
     if (searchParams) {
-      url = `http://localhost:${PORT}/api/books/filter/${searchParams}`;
+      url = `http://100.79.247.2:3001/api/books/filter/${searchParams}`;
     } else {
       console.log("No query passed");
-      url = `http://localhost:${PORT}/api/books`;
+      url = `http://100.79.247.2:3001/api/books`;
     }
 
     try {
