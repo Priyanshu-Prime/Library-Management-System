@@ -7,7 +7,7 @@ import ReadingImg from '../../components/ReadingImg'
 const AdminDashboard = () => {
   return (
     <div className='h-screen w-screen flex'>
-    <Sidebar />
+    <Sidebar isAdmin={true} />
     <div className='h-full w-4/5 bg-[#F0F7F4] flex justify-center'>
       {/* <ReadingImg /> */}
     </div>

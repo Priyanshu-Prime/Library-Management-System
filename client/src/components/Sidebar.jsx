@@ -2,7 +2,7 @@ import SidebarRow from "./SidebarRow";
 import Profile from "./Profile";
 import { useEffect, useState } from "react";
 
-const Sidebar = () => {
+const Sidebar = (isAdmin) => {
   const [userName, setUserName] = useState("");
   useEffect(() => {
     const name = localStorage.getItem("userName");
@@ -15,11 +15,12 @@ const Sidebar = () => {
         <div className="text-white text-2xl font-normal p-1">Welcome</div>
         <div className="text-white text-2xl font-bold">{userName}</div>
       </div>
-      <div className="flex flex-col flex-grow">
+      <div className="flex flex-col flex-grow mt-20">
         <SidebarRow redirectUrl="inventory" row_content="Book Inventory" />
         <SidebarRow redirectUrl="issued" row_content="Books Issued" />
-        <SidebarRow redirectUrl="requests" row_content="Book Requests" />
-        <SidebarRow redirectUrl="profile" row_content="Account Info" />
+        {/* <SidebarRow redirectUrl="requests" row_content="Book Requests" /> */}
+        {!isAdmin && <SidebarRow redirectUrl="profile" row_content="Account Info" />}
+        {isAdmin && <SidebarRow redirectUrl="defaulters" row_content="Defaulters" />}
       </div>
     </div>
   );
