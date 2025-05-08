@@ -47,12 +47,8 @@ const Sidebar = (isAdmin) => {
         <div className="text-white text-2xl font-normal p-1">Welcome</div>
         <div className="text-white text-2xl font-bold">{userName}</div>
       </div>
-      <div className="flex flex-col flex-grow mt-20">
-        <SidebarRow redirectUrl="inventory" row_content="Book Inventory" />
-        <SidebarRow redirectUrl="issued" row_content="Books Issued" />
-        {/* <SidebarRow redirectUrl="requests" row_content="Book Requests" /> */}
-        {!isAdmin && <SidebarRow redirectUrl="profile" row_content="Account Info" />}
-        {isAdmin && <SidebarRow redirectUrl="defaulters" row_content="Defaulters" />}
+        
+
       <div className="flex flex-col flex-grow">
         <SidebarRow
           redirectUrl="inventory"
@@ -64,16 +60,18 @@ const Sidebar = (isAdmin) => {
           row_content="Books Issued"
           isActive={location.pathname === "/issued"}
         />
-        <SidebarRow
-          redirectUrl="requests"
-          row_content="Book Requests"
-          isActive={location.pathname === "/requests"}
-        />
-        <SidebarRow
+//         <SidebarRow
+//           redirectUrl="requests"
+//           row_content="Book Requests"
+//           isActive={location.pathname === "/requests"}
+//         />
+          
+          {!isAdmin && <SidebarRow
           redirectUrl="profile"
           row_content="Account Info"
           isActive={location.pathname === "/profile"}
-        />
+        />}
+          {isAdmin && <SidebarRow redirectUrl="defaulters" row_content="Defaulters" />}
       </div>
     </div>
   );

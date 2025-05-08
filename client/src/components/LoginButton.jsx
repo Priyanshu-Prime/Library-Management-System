@@ -70,26 +70,6 @@ const LoginButton = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email }), // Send the email to the backend
-        });
-  
-        const data = await response.json();
-  
-        if (response.ok) {
-          // Redirect to dashboard after successful login
-          console.log('Login successful');
-          const admin = ['221145','221164'];
-          const uid = data.emailUser;
-          localStorage.setItem('userName', name);
-          localStorage.setItem('uid', uid);
-          if (!admin.includes(uid))
-          {
-            window.location.href = 'http://localhost:5173/dashboard';
-          }
-          else
-          {
-            window.location.href = 'http://localhost:5173/adminDashboard';
-          }
           body: JSON.stringify({ name, email }),
         }
       );
