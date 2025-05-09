@@ -1,4 +1,4 @@
-const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent } = require("../models/student");
+const { getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent, filterStudents } = require("../models/student");
 
 const allStudents = async (req, res) => {
     try {
@@ -74,4 +74,32 @@ const removeStudent = async(req, res) =>
     }   
 }
 
-module.exports = {allStudents, studentByID, createStudent, changeStudent, removeStudent}
+const studentFilter = async (req, res) => {
+    const { searchterm } = req.params;
+    try {
+        const records = await filterStudents(searchterm);
+        res.status(200).json(records);
+    }
+    catch (err) {
+        console.log("Error in studentFilter in studentcontrol.js");
+        res.status(500).json({ error: "Failed to filter students" });
+    }
+};
+
+const addRecord = async (req, res) => {
+    const { book_id, student_id, date_of_issue, date_of_return } = req.body;
+
+    if (!book_id || !student_id || !date_of_issue || !date_of_return) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    try {
+        const newRecord = await addIssueRecord(book_id, student_id, date_of_issue, date_of_return);
+        res.status(201).json(newRecord);
+    } catch (err) {
+        console.log("Error in addRecord in issuingcontrol.js");
+        res.status(500).json({ error: "Failed to add issue record" });
+    }
+};
+
+module.exports = {allStudents, studentByID, createStudent, changeStudent, removeStudent, studentFilter}

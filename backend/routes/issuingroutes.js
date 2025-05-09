@@ -1,8 +1,10 @@
 const express = require("express");
-const {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords} = require("../controllers/issuingcontrol");
+const {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords, addRecord} = require("../controllers/issuingcontrol");
 const router = express.Router();
 
 router.get("/issues", allRecords);
+
+router.post("/issues", addRecord);
 
 router.get("/issues/unreturned", getUnreturnedRecords);
 

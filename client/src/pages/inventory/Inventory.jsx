@@ -5,6 +5,7 @@ import BookCard from "../../components/BookCard";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import IssueBook from "../../components/IssueBook";
 
 const PORT = import.meta.env.VITE_ADDRESS;
 
@@ -58,6 +59,7 @@ const Inventory = () => {
           <p>No books available.</p>
         )}
       </div>
+      <IssueBook />
     </div>
   );
 };

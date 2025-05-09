@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/adminDashboard" element={<AdminDashboard />} />
         <Route path="/inventory" element={<Inventory />} />
         <Route path="/issued" element={<BooksIssued />} />
-        <Route path="/requests" element={<BookInfo />} />
+        <Route path="/requestbook" element={<BookInfo />} />
         <Route path="/profile" element={<AccountInfo />} />
         <Route path="/defaulters" element={<Defaulters />} />
         <Route path="*" element={< LoginPage />} />

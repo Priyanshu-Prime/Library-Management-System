@@ -90,4 +90,44 @@ const deleteStudent = async(id) => {
     }
 };
 
-module.exports = {getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent};
+const filterStudents = async (searchText) => {
+    try {
+        // console.log("Search text: ", searchText);
+        const filteredRecords = await prisma.student.findMany({
+            where: {
+                OR: [
+                    {
+                        name: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        email: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        contact: {
+                            contains: searchText,
+                            mode: 'insensitive',
+                        },
+                    },
+                    {
+                        roll_no: {
+                            equals: parseInt(searchText) || undefined,
+                        },
+                    },
+                ],
+            },
+        });
+        return filteredRecords;
+    }
+    catch (err) {
+        console.log("Error in filterStudents in student.js");
+        throw err;
+    }
+};
+
+module.exports = {getAllStudents, getStudentByID, addStudent, updateStudent, deleteStudent, filterStudents};
