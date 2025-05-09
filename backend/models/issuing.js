@@ -235,5 +235,25 @@ const unreturnedRecords = async() =>
         console.log(err.stack);
     }
 }
+
+const addIssueRecord = async (book_id, student_id, date_of_issue, date_of_return) => {
+    try {
+        const newRecord = await prisma.issues.create({
+            data: {
+                book_id: book_id,
+                student_id: parseInt(student_id),
+                date_of_issue: new Date(date_of_issue),
+                date_of_return: new Date(date_of_return),
+                returned: false,
+            },
+        });
+        console.log("Issue record added successfully!");
+        return newRecord;
+    } catch (err) {
+        console.log("Error in addIssueRecord in issuing.js");
+        console.log(err.stack);
+        throw err;
+    }
+};
  
-module.exports = {getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords};
+module.exports = {getAllRecords, addIssueRecord, getRecordByBookID, getRecordByStudentID, getDefaulters,deleteRecord,filterIssues, returnIssues, unreturnedRecords};

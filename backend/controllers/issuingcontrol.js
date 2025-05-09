@@ -1,4 +1,4 @@
-const { getAllRecords, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues, returnIssues, unreturnedRecords} = require("../models/issuing");
+const { getAllRecords, addIssueRecord, getRecordByBookID, getRecordByStudentID, getDefaulters ,deleteRecord,filterIssues, returnIssues, unreturnedRecords} = require("../models/issuing");
 
 const allRecords = async (req, res) => {
     try {
@@ -9,6 +9,22 @@ const allRecords = async (req, res) => {
         console.log("Error in allRecords in issuingcontrol.js");
         res.status(500).json({ error: "Failed to get records" });
         console.log(err.stack);
+    }
+};
+
+const addRecord = async (req, res) => {
+    const { book_id, student_id, date_of_issue, date_of_return } = req.body;
+
+    if (!book_id || !student_id || !date_of_issue || !date_of_return) {
+        return res.status(400).json({ error: "Missing required fields" });
+    }
+
+    try {
+        const newRecord = await addIssueRecord(book_id, student_id, date_of_issue, date_of_return);
+        res.status(201).json(newRecord);
+    } catch (err) {
+        console.log("Error in addRecord in issuingcontrol.js");
+        res.status(500).json({ error: "Failed to add issue record" });
     }
 };
 
@@ -103,4 +119,4 @@ const markReturned = async(req, res) =>
     }
 }
 
-module.exports = {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords};
+module.exports = {allRecords, addRecord, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords};

@@ -3,9 +3,11 @@ import Profile from "./Profile";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom"; // Import useLocation
 
-const Sidebar = ({isAdmin}) => {
+const Sidebar = ({isAdmin = false}) => {
   const [userName, setUserName] = useState("");
   const location = useLocation(); // Get the current route
+
+  console.log(isAdmin);
 
   useEffect(() => {
     const name = localStorage.getItem("userName");
@@ -43,6 +45,7 @@ const Sidebar = ({isAdmin}) => {
           row_content="Account Info"
           isActive={location.pathname === "/profile"}
         />}
+
           {isAdmin && <SidebarRow redirectUrl="defaulters" row_content="Defaulters" />}
       </div>
     </div>
