@@ -9,6 +9,7 @@ const getAllStudents = async() => {
     }
     catch(err) {
         console.log("Error in getAllStudents in student.js");
+        console.log(err.stack)
         throw err;
     }
 };

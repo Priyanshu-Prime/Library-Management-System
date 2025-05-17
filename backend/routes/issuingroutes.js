@@ -2,9 +2,14 @@ const express = require("express");
 const {allRecords, recordByBookId, recordByStudentId, defaultersList,recordDelete,issuesFilter, markReturned, getUnreturnedRecords, addRecord} = require("../controllers/issuingcontrol");
 const router = express.Router();
 
+function message()
+{
+    console.log("passed trhough create route")
+}
+
 router.get("/issues", allRecords);
 
-router.post("/issues", addRecord);
+router.post("/issues", message, addRecord);
 
 router.get("/issues/unreturned", getUnreturnedRecords);
 

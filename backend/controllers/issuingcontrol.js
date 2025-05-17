@@ -13,11 +13,12 @@ const allRecords = async (req, res) => {
 };
 
 const addRecord = async (req, res) => {
-    const { book_id, student_id, date_of_issue, date_of_return } = req.body;
-
-    if (!book_id || !student_id || !date_of_issue || !date_of_return) {
+    const { book_id, student_id, date_of_issue, date_of_return, returned } = req.body;
+    console.log(req.body);
+    if (!book_id || !student_id || !date_of_issue || !date_of_return || returned === undefined) {
         return res.status(400).json({ error: "Missing required fields" });
     }
+    // console.log(book_id, student_id, date_of_issue, date_of_return); 
 
     try {
         const newRecord = await addIssueRecord(book_id, student_id, date_of_issue, date_of_return);

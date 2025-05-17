@@ -1,7 +1,8 @@
 import request from 'supertest';
 import express from 'express';
-import { describe, it, expect } from 'vitest';
-import { allRecords, recordByBookId, recordByStudentId, defaultersList, recordDelete, issuesFilter, markReturned, getUnreturnedRecords } from '../controllers/issuingcontrol';
+import { describe, it, expect, afterEach } from 'vitest';
+import { allRecords, recordByBookId, recordByStudentId, defaultersList, recordDelete, issuesFilter, markReturned, getUnreturnedRecords, addRecord } from '../controllers/issuingcontrol';
+import { createBook } from '../controllers/bookcontrol';
 
 const app = express();
 app.use(express.json());
@@ -10,6 +11,8 @@ app.get('/api/issues', allRecords);
 app.get('/api/issues/book/:id', recordByBookId);
 app.get('/api/issues/student/:id', recordByStudentId);
 app.get('/api/issues/defaulters', defaultersList);
+app.post("/api/issues", addRecord);
+app.post('/api/books', createBook);
 app.delete('/api/issues/delete/:id', recordDelete);
 app.get('/api/issues/filter/:searchText', issuesFilter);
 app.patch('/api/issues/return/:bookid', markReturned);
@@ -22,8 +25,43 @@ describe('Issuing Controller', () => {
         expect(res.body).toBeInstanceOf(Array);
     });
 
+    it('should add a new issue', async () => {
+        await request(app)
+            .post('/api/books') 
+            .send({
+                id: '11111',
+                name: 'Sample Book',
+                author: 'Test Author',
+                subject: 'Test Subject',
+                publication: 'Test Publication',
+                image: 'test-image-url',
+            });
+    
+        await request(app)
+            .post('/api/students') 
+            .send({
+                roll_no: 221145,
+                name: 'Test Student',
+                email: 'test@student.com',
+                contact: '1234567890',
+            });
+
+        const res = await request(app)
+            .post('/api/issues')
+            .send({
+                book_id: '11111', 
+                student_id: 221145,
+                date_of_issue: '2025-03-06',
+                date_of_return: '2025-03-13',
+                returned: false,
+            });
+    
+        expect(res.statusCode).toEqual(201);
+        expect(res.body).toHaveProperty('book_id', '11111');
+    });
+
     it('should get an issue by book ID', async () => {
-        const res = await request(app).get('/api/issues/book/9780306447907');
+        const res = await request(app).get('/api/issues/book/11111');
         if (res.body && res.body.book_id) {
             expect(res.statusCode).toEqual(200);
             expect(res.body[0]).toHaveProperty('book_id');
@@ -81,5 +119,10 @@ describe('Issuing Controller', () => {
         const res = await request(app).get('/api/issues/defaulters');
         expect(res.statusCode).toEqual(200);
         expect(res.body).toBeInstanceOf(Array);
+    });
+
+    afterEach(async () => {
+        await request(app).delete('/api/books/11111');
+        await request(app).delete('/api/issues/delete/11111');
     });
 });

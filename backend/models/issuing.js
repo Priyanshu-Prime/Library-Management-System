@@ -50,6 +50,10 @@ const getRecordByBookID = async(id) => {
                 book_id: id
             }
         });
+        if(!record) {
+            console.log("Record does not exist");
+            return {message: "Record does not exist"};
+        }
         return record;
     }
     catch(err) {
@@ -73,6 +77,10 @@ const getRecordByStudentID = async (id) => {
                 },
             },
         });
+        if(!record) {
+            console.log("Record does not exist");
+            return {message: "Record does not exist"};
+        }
         return record;
     } catch (err) {
         console.log("Error in getRecordByStudentID in issuing.js");
@@ -112,6 +120,14 @@ const getDefaulters = async() => {
 
 const deleteRecord = async(id) => {
     try {
+        const record = await prisma.issues.findUnique({
+            where: {book_id: id}
+        });
+
+        if(!record) {
+            console.log("Record does not exist");
+            return {message: "Record does not exist"};
+        }
         const deletedRecords = await prisma.issues.delete({
             where : {
                 book_id : id
@@ -140,20 +156,17 @@ const filterIssues = async(searchText) => {
                     },
                     {
                         student_id: parseInt(searchText),
-                        mode: 'insensitve',
                     },
-                    {
-                        date_of_issue: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        }
-                    },
-                    {
-                        date_of_return: {
-                            contains: searchText,
-                            mode: 'insensitive',
-                        }
-                    },
+                    // {
+                    //     date_of_issue: {
+                    //         contains: searchText,
+                    //     }
+                    // },
+                    // {
+                    //     date_of_return: {
+                    //         contains: searchText,
+                    //     }
+                    // },
                 ],
             },
         });
