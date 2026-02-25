@@ -3,9 +3,9 @@ import BookDetails from '../../components/BookDetails'
 
 const BookInfo = () => {
     return (
-        <div className='h-screen w-screen flex'>
+        <div className='h-screen w-screen flex bg-gray-50 overflow-hidden'>
             <Sidebar />
-            <div className='h-full w-4/5 bg-[#F0F7F4] flex justify-center'>
+            <div className='flex-1 h-full overflow-y-auto flex justify-center p-8'>
                 <BookDetails />
             </div>
         </div>

@@ -2,10 +2,8 @@ import Sidebar from "../../components/Sidebar";
 import InventoryTopBar from "../../components/InventoryTopBar";
 import { useEffect } from "react";
 import { useState } from "react";
-import axios from 'axios';
+import api from "../../api";
 import moment from 'moment'
-
-const PORT = import.meta.env.VITE_ADDRESS;
 
 const AccountInfo = () => {
     
@@ -19,10 +17,8 @@ const AccountInfo = () => {
     const [issues, setIssues] = useState([]) 
     // console.log(uid);
     const fetchStudents = async () => {
-        const url = `http://${PORT}/api/students/${uid}`
-
         try {
-            const response = await axios.get(url);
+            const response = await api.get(`/students/${uid}`);
             setStudents(response.data);
             console.log(students);
         }
@@ -32,10 +28,8 @@ const AccountInfo = () => {
     }
 
     const fetchIssues = async () => {
-        const url = `http://${PORT}/api/issues/student/${uid}`;
-
         try {
-            const response = await axios.get(url)
+            const response = await api.get(`/issues/student/${uid}`);
             setIssues(response.data)
             console.log(issues)
         }

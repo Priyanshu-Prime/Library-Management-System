@@ -59,8 +59,8 @@ const PORT = import.meta.env.VITE_ADDRESS;
 
 const LoginButton = () => {
   const handleGoogleSuccess = async (credentialResponse) => {
-    const decoded = jwtDecode(credentialResponse?.credential);
-    const { name, email } = decoded;
+    // const decoded = jwtDecode(credentialResponse?.credential);
+    // const { name, email } = decoded;
 
     try {
       const response = await fetch(
@@ -70,16 +70,17 @@ const LoginButton = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ name, email }),
+          body: JSON.stringify({ token: credentialResponse.credential }),
         }
       );
 
       const data = await response.json();
 
       if (response.ok) {
-        const { isAdmin, emailUser } = data;
+        const { isAdmin, emailUser, name } = data;
         localStorage.setItem("userName", name);
         localStorage.setItem("uid", emailUser);
+        localStorage.setItem("token", data.token); // Store the JWT token
 
         if (isAdmin) {
           window.location.href = "http://localhost:5173/adminDashboard";

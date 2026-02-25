@@ -6,6 +6,7 @@ const getAllRecords = async() => {
     try {
         const records = await prisma.issues.findMany({
             select: {
+                id: true,
                 book: {
                     select: {
                         id: true,
@@ -25,6 +26,7 @@ const getAllRecords = async() => {
         });
 
         const formattedRecords = records.map(record => ({
+            id: record.id,
             book_id: record.book.id,
             title: record.book.name,
             student_id: record.student.roll_no,
@@ -45,9 +47,12 @@ const getAllRecords = async() => {
 
 const getRecordByBookID = async(id) => {
     try {
-        const record = await prisma.issues.findUnique({
+        const record = await prisma.issues.findMany({
             where: {
                 book_id: id
+            },
+            orderBy: {
+                date_of_issue: 'desc'
             }
         });
         return record;
@@ -114,7 +119,7 @@ const deleteRecord = async(id) => {
     try {
         const deletedRecords = await prisma.issues.delete({
             where : {
-                book_id : id
+                id : parseInt(id)
             }
         });
         console.log("Issue Record deleted!");
@@ -174,6 +179,7 @@ const returnIssues = async(bookid) =>
             where:
             {
                 book_id: bookid,
+                returned: false
             },
             data:
             {
@@ -199,6 +205,7 @@ const unreturnedRecords = async() =>
                 returned: false,
             },
             select: {
+                id: true,
                 book: {
                     select: {
                         id: true,
@@ -218,6 +225,7 @@ const unreturnedRecords = async() =>
         });
 
         const formattedRecords = records.map(record => ({
+            id: record.id,
             book_id: record.book.id,
             title: record.book.name,
             student_id: record.student.roll_no,

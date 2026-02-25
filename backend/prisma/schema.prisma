@@ -19,11 +19,12 @@ model book {
   author      String
   publication String?
   image       String?
-  issues      issues?
+  issues      issues[]
 }
 
 model issues {
-  book_id        String   @id
+  id             Int      @id @default(autoincrement())
+  book_id        String
   student_id     Int?
   date_of_issue  DateTime @db.Date
   date_of_return DateTime @db.Date
